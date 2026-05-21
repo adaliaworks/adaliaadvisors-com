@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You — Adalia Advisors</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" href="logo-a.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --carolina: #4B9CD3;
+    --royal: #1A3FA3;
+    --navy: #163265;
+    --white: #ffffff;
+    --off-white: #f7f8fc;
+    --light-gray: #edf0f7;
+    --text: #1a1f36;
+    --text-muted: #5a6380;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(75,156,211,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  body::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(26,63,163,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+  }
+
+  .logo {
+    margin-bottom: 48px;
+  }
+
+  .logo img {
+    height: 72px;
+  }
+
+  .checkmark {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(75,156,211,0.15);
+    border: 2px solid var(--carolina);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 36px;
+  }
+
+  .checkmark svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  h1 span { color: var(--carolina); }
+
+  p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    margin-bottom: 48px;
+  }
+
+  .btn-home {
+    display: inline-block;
+    background: var(--carolina);
+    color: var(--white);
+    text-decoration: none;
+    padding: 16px 40px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 4px;
+  }
+
+  .btn-home:hover { background: #5baee3; }
+
+  footer {
+    position: absolute;
+    bottom: 32px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="logo">
+      <img src="logo-full.png" alt="Adalia Advisors">
+    </div>
+
+    <div class="checkmark">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="5,14 11,20 23,8" stroke="#4B9CD3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <h1>Thanks for<br>reaching <span>out.</span></h1>
+
+    <p>We've received your message and will be in touch shortly. In the meantime, feel free to look around.</p>
+
+    <a href="index.html#top" class="btn-home">Back to Home</a>
+
+  </div>
+
+  <footer>&copy; 2026 Adalia Advisors. All rights reserved.</footer>
+
+</body>
+</html>
