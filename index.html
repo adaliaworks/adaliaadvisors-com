@@ -165,7 +165,7 @@
     margin-bottom: 64px;
   }
   .section-label {
-    font-size: 12px;
+    font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -200,7 +200,9 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
     gap: 32px;
+    align-items: stretch;
   }
   .service-card {
     background: var(--white);
@@ -209,7 +211,8 @@
     border-top: 4px solid var(--carolina);
     transition: transform 0.2s, box-shadow 0.2s;
     display: grid;
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-rows: subgrid;
+    grid-row: span 4;
   }
   .service-card:hover {
     transform: translateY(-4px);
@@ -228,23 +231,22 @@
     font-size: 22px;
     font-weight: 600;
     color: var(--navy);
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
-  .service-card p {
+  .service-card > p {
     font-size: 15px;
     line-height: 1.75;
     color: var(--text-muted);
-    align-self: stretch;
+    padding-bottom: 0;
   }
   .service-sub {
-    margin-top: 24px;
     padding-top: 24px;
     border-top: 1px solid var(--light-gray);
   }
   .service-sub h4 {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--carolina);
     margin-bottom: 12px;
@@ -562,7 +564,6 @@
     <h2>Three ways we help<br>your business grow</h2>
     <p>Whether you're building your operating foundation, planning for the future, or preparing for a transaction, we meet you where you are.</p>
   </div>
-  <div class="divider"></div>
   <div class="services-grid">
 
     <div class="service-card">
@@ -687,7 +688,7 @@
 </section>
 
 <footer>
-  <img src="logo-a.png" alt="Adalia Advisors">
+  <a href="#top" aria-label="Adalia Advisors — home"><img src="logo-a.png" alt="Adalia Advisors"></a>
   <p>&copy; 2026 Adalia Advisors. All rights reserved.</p>
 </footer>
 
