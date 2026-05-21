@@ -28,7 +28,7 @@
     overflow-x: hidden;
   }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -42,6 +42,26 @@
   }
   .nav-logo a { display: block; line-height: 0; }
   .nav-logo img { height: 44px; display: block; }
+
+  /* hamburger checkbox — hidden */
+  #nav-toggle { display: none; }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
   .nav-links {
     display: flex;
     gap: 40px;
@@ -66,7 +86,7 @@
   }
   .nav-cta:hover { background: var(--carolina) !important; }
 
-  /* HERO */
+  /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -135,7 +155,7 @@
     max-width: 100%;
   }
 
-  /* SERVICES */
+  /* ── SERVICES ── */
   .services {
     padding: 120px 60px;
     background: var(--off-white);
@@ -242,7 +262,7 @@
     font-size: 12px;
   }
 
-  /* TRACTION */
+  /* ── TRACTION ── */
   .traction {
     padding: 120px 60px;
     background: var(--white);
@@ -289,7 +309,7 @@
     color: var(--text-muted);
   }
 
-  /* CONTACT */
+  /* ── CONTACT ── */
   .contact {
     padding: 120px 60px;
     background: var(--navy);
@@ -367,7 +387,7 @@
   }
   .btn-submit:hover { background: #5baee3; }
 
-  /* FOOTER */
+  /* ── FOOTER ── */
   footer {
     background: #0a1a3a;
     padding: 40px 60px;
@@ -378,6 +398,117 @@
   }
   footer img { height: 32px; display: block; }
   footer p { font-size: 13px; color: rgba(255,255,255,0.3); }
+
+  /* ════════════════════════════
+     RESPONSIVE — TABLET (≤900px)
+     ════════════════════════════ */
+  @media (max-width: 900px) {
+    nav { padding: 14px 32px; }
+
+    .hero { padding: 100px 32px 60px; }
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      text-align: center;
+    }
+    .hero-text p { margin-left: auto; margin-right: auto; }
+    .hero-logo { order: -1; }
+    .hero-logo img { width: 220px; }
+
+    .services { padding: 80px 32px; }
+    .services-grid { grid-template-columns: 1fr; max-width: 560px; }
+
+    .traction { padding: 80px 32px; }
+    .traction-inner { grid-template-columns: 1fr; gap: 48px; }
+
+    .contact { padding: 80px 32px; }
+
+    footer { padding: 32px; }
+  }
+
+  /* ════════════════════════════
+     RESPONSIVE — MOBILE (≤640px)
+     ════════════════════════════ */
+  @media (max-width: 640px) {
+    /* Nav: show hamburger, hide links by default */
+    nav {
+      padding: 14px 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-hamburger {
+      display: flex;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      width: 100%;
+      margin-top: 12px;
+      border-top: 1px solid var(--light-gray);
+      padding-top: 12px;
+    }
+
+    .nav-links li { width: 100%; }
+
+    .nav-links a {
+      display: block;
+      padding: 12px 4px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .nav-links .nav-cta {
+      margin-top: 12px;
+      text-align: center;
+      border-radius: 4px;
+      border-bottom: none;
+    }
+
+    /* Show nav when checkbox is checked */
+    #nav-toggle:checked ~ .nav-links { display: flex; }
+
+    /* Animate hamburger to X */
+    #nav-toggle:checked ~ label .nav-hamburger span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    #nav-toggle:checked ~ label .nav-hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+    #nav-toggle:checked ~ label .nav-hamburger span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Hero */
+    .hero { padding: 90px 20px 60px; min-height: auto; }
+    .hero-text h1 { font-size: 36px; }
+    .hero-text p { font-size: 16px; }
+    .hero-logo img { width: 160px; }
+
+    /* Sections */
+    .services { padding: 60px 20px; }
+    .traction { padding: 60px 20px; }
+    .contact { padding: 60px 20px; }
+
+    .service-card { padding: 32px 24px; }
+    .traction-card { padding: 24px; }
+
+    /* Contact form: single column */
+    .contact-form { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: 1; }
+    .form-submit { grid-column: 1; }
+    .btn-submit { width: 100%; padding: 16px; }
+
+    /* Footer */
+    footer {
+      padding: 28px 20px;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+  }
 </style>
 </head>
 <body>
@@ -388,6 +519,17 @@
       <img src="logo-a.png" alt="Adalia Advisors">
     </a>
   </div>
+
+  <!-- CSS-only mobile menu: hidden checkbox + label -->
+  <input type="checkbox" id="nav-toggle">
+  <label for="nav-toggle" aria-label="Toggle navigation">
+    <div class="nav-hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </label>
+
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#traction">EOS &amp; Traction</a></li>
