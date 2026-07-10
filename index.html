@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adalia Advisors</title>
+<title>Adalia Advisors — Adalia Advisors</title>
 <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 <link rel="icon" type="image/png" href="img/logo-a.png">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --carolina: #4B9CD3;
@@ -42,10 +42,7 @@
   }
   .nav-logo a { display: block; line-height: 0; }
   .nav-logo img { height: 44px; display: block; }
-
-  /* hamburger checkbox — hidden */
   #nav-toggle { display: none; }
-
   .nav-hamburger {
     display: none;
     flex-direction: column;
@@ -55,16 +52,14 @@
   }
   .nav-hamburger span {
     display: block;
-    width: 24px;
-    height: 2px;
+    width: 24px; height: 2px;
     background: var(--text);
     border-radius: 2px;
     transition: transform 0.3s, opacity 0.3s;
   }
-
   .nav-links {
     display: flex;
-    gap: 40px;
+    gap: 32px;
     list-style: none;
     align-items: center;
   }
@@ -78,6 +73,7 @@
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--carolina); }
+  .nav-links a.active { color: var(--carolina); }
   .nav-cta {
     background: var(--royal) !important;
     color: var(--white) !important;
@@ -88,14 +84,15 @@
 
   /* ── HERO ── */
   .hero {
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     background: var(--navy);
     position: relative;
     overflow: hidden;
-    padding: 120px 60px 80px;
+    padding: 140px 60px 100px;
   }
+  .hero.hero-tall { min-height: 100vh; }
   .hero::before {
     content: '';
     position: absolute;
@@ -105,218 +102,168 @@
     pointer-events: none;
   }
   .hero-inner {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
     position: relative;
     z-index: 2;
   }
-  .hero-text h1 {
+  .hero-inner.wide { max-width: 1200px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--carolina);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(42px, 5vw, 68px);
+    font-size: clamp(38px, 5vw, 64px);
     font-weight: 700;
     color: var(--white);
     line-height: 1.1;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
   }
-  .hero-text h1 span { color: var(--carolina); }
-  .hero-text p {
-    font-size: 18px;
+  .hero h1 span { color: var(--carolina); }
+  .hero .hero-lead {
+    font-size: 20px;
     line-height: 1.7;
     color: rgba(255,255,255,0.72);
-    max-width: 480px;
-    margin-bottom: 44px;
     font-weight: 300;
+    max-width: 680px;
+    margin-bottom: 48px;
   }
-  .hero-cta {
+  .hero .hero-logo img { width: 300px; max-width: 100%; }
+
+  /* ── BUTTONS ── */
+  .btn {
     display: inline-block;
     background: var(--carolina);
     color: var(--white);
     text-decoration: none;
-    padding: 16px 36px;
+    padding: 14px 32px;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     border-radius: 4px;
+    transition: background 0.2s;
   }
-  .hero-cta:hover { background: #5baee3; }
-  .hero-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .btn:hover { background: #5baee3; }
+  .btn-outline {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.4);
+    color: var(--white);
   }
-  .hero-logo img {
-    width: 320px;
-    max-width: 100%;
+  .btn-outline:hover { border-color: var(--carolina); background: rgba(75,156,211,0.1); }
+  .btn-dark {
+    background: var(--royal);
+    color: var(--white);
   }
+  .btn-dark:hover { background: var(--carolina); }
+  .btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
 
-  /* ── SERVICES ── */
-  .services {
-    padding: 120px 60px;
-    background: var(--off-white);
+  /* ── PROSE SECTIONS ── */
+  .prose-section {
+    padding: 100px 60px;
+    background: var(--white);
   }
-  .section-header {
-    text-align: center;
-    margin-bottom: 64px;
+  .prose-section.alt { background: var(--off-white); }
+  .prose-section.dark { background: var(--navy); }
+  .prose-inner {
+    max-width: 760px;
+    margin: 0 auto;
   }
-  .section-label {
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--carolina);
-    margin-bottom: 16px;
-    display: block;
-  }
-  .section-header h2 {
+  .prose-inner.wide { max-width: 1200px; }
+
+  .prose-inner h2 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(30px, 4vw, 46px);
+    font-size: clamp(28px, 3.5vw, 42px);
     font-weight: 600;
     color: var(--navy);
     line-height: 1.2;
+    margin-bottom: 28px;
   }
-  .section-header p {
-    margin-top: 20px;
+  .prose-section.dark .prose-inner h2 { color: var(--white); }
+  .prose-inner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+    margin-top: 48px;
+  }
+  .prose-section.dark .prose-inner h3 { color: var(--carolina); }
+  .prose-inner p {
     font-size: 17px;
+    line-height: 1.85;
     color: var(--text-muted);
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.7;
+    margin-bottom: 24px;
   }
-  .divider {
-    width: 48px;
-    height: 3px;
-    background: var(--carolina);
-    margin: 0 auto 56px;
+  .prose-section.dark .prose-inner p { color: rgba(255,255,255,0.65); }
+  .prose-inner p strong { color: var(--text); font-weight: 600; }
+  .prose-inner hr {
+    border: none;
+    border-top: 1px solid var(--light-gray);
+    margin: 56px 0;
   }
+  .prose-section.dark .prose-inner hr { border-color: rgba(255,255,255,0.1); }
+
+  /* Pull quote style */
+  .pull-quote {
+    border-left: 4px solid var(--carolina);
+    padding: 8px 0 8px 28px;
+    margin: 40px 0;
+  }
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px !important;
+    font-style: italic;
+    color: var(--navy) !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* ── SERVICES GRID ── */
   .services-grid {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
     gap: 32px;
-    align-items: stretch;
   }
   .service-card {
     background: var(--white);
     border-radius: 8px;
-    padding: 48px 36px;
+    padding: 40px 32px;
     border-top: 4px solid var(--carolina);
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: grid;
-    grid-template-rows: subgrid;
-    grid-row: span 4;
-  }
-  .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(26,63,163,0.1);
+    display: flex;
+    flex-direction: column;
   }
   .service-card:nth-child(2) { border-top-color: var(--royal); }
   .service-card:nth-child(3) { border-top-color: var(--navy); }
-  .service-icon {
-    width: 44px;
-    height: 44px;
-    margin-bottom: 24px;
-  }
-  .service-icon img { width: 100%; height: 100%; object-fit: contain; }
+  .service-card:nth-child(4) { border-top-color: var(--carolina); }
+  .service-card:nth-child(5) { border-top-color: var(--royal); }
   .service-card h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     color: var(--navy);
-    margin-bottom: 10px;
+    margin-bottom: 14px;
+    margin-top: 0;
   }
-  .service-card > p {
+  .service-card p {
     font-size: 15px;
     line-height: 1.75;
     color: var(--text-muted);
-    padding-bottom: 0;
-  }
-  .service-sub {
-    padding-top: 24px;
-    border-top: 1px solid var(--light-gray);
-  }
-  .service-sub h4 {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--carolina);
-    margin-bottom: 12px;
-  }
-  .service-sub ul { list-style: none; padding: 0; }
-  .service-sub ul li {
-    font-size: 14px;
-    color: var(--text-muted);
-    padding: 5px 0 5px 16px;
-    position: relative;
-    line-height: 1.5;
-  }
-  .service-sub ul li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--carolina);
-    font-size: 12px;
-  }
-
-  /* ── TRACTION ── */
-  .traction {
-    padding: 120px 60px;
-    background: var(--white);
-  }
-  .traction-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-  .traction-text h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 3.5vw, 42px);
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 24px;
-    line-height: 1.2;
-  }
-  .traction-text p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-  }
-  .traction-cards { display: flex; flex-direction: column; gap: 24px; }
-  .traction-card {
-    padding: 32px;
-    border-radius: 8px;
-    border-left: 4px solid var(--carolina);
-    background: var(--off-white);
-  }
-  .traction-card:last-child { border-left-color: var(--royal); }
-  .traction-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--navy);
-    margin-bottom: 12px;
-  }
-  .traction-card p {
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--text-muted);
+    margin-bottom: 0;
   }
 
   /* ── CONTACT ── */
   .contact {
-    padding: 120px 60px;
+    padding: 100px 60px;
     background: var(--navy);
     position: relative;
     overflow: hidden;
@@ -335,9 +282,20 @@
     position: relative;
     z-index: 2;
   }
-  .contact .section-header { margin-bottom: 52px; }
-  .contact .section-header h2 { color: var(--white); }
-  .contact .section-header p { color: rgba(255,255,255,0.6); }
+  .contact h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .contact > .contact-inner > p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
   .contact-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -367,14 +325,11 @@
     transition: border-color 0.2s, background 0.2s;
   }
   .form-group select option { background: var(--navy); color: var(--white); }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
     border-color: var(--carolina);
     background: rgba(255,255,255,0.1);
   }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: rgba(255,255,255,0.22); }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.22); }
   .form-group textarea { resize: vertical; min-height: 130px; }
   .form-submit { grid-column: 1 / -1; margin-top: 8px; }
   .btn-submit {
@@ -389,6 +344,7 @@
     text-transform: uppercase;
     border-radius: 4px;
     cursor: pointer;
+    transition: background 0.2s;
   }
   .btn-submit:hover { background: #5baee3; }
 
@@ -401,54 +357,25 @@
     justify-content: space-between;
     border-top: 1px solid rgba(255,255,255,0.06);
   }
+  footer a.footer-logo { display: block; line-height: 0; }
   footer img { height: 32px; display: block; }
   footer p { font-size: 13px; color: rgba(255,255,255,0.3); }
-  .footer-legal { text-align: right; max-width: 560px; }
-  .footer-legal p { font-size: 13px; color: rgba(255,255,255,0.45); }
-  .footer-tm { font-size: 11px; color: rgba(255,255,255,0.32); margin-top: 6px; line-height: 1.6; }
-  .tm { font-size: 0.6em; vertical-align: super; line-height: 0; }
 
-  /* ════════════════════════════
-     RESPONSIVE — TABLET (≤900px)
-     ════════════════════════════ */
+  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     nav { padding: 14px 32px; }
-
     .hero { padding: 100px 32px 60px; }
-    .hero-inner {
-      grid-template-columns: 1fr;
-      gap: 48px;
-      text-align: center;
-    }
-    .hero-text p { margin-left: auto; margin-right: auto; }
-    .hero-logo { order: -1; }
-    .hero-logo img { width: 220px; }
-
-    .services { padding: 80px 32px; }
-    .services-grid { grid-template-columns: 1fr; max-width: 560px; }
-
-    .traction { padding: 80px 32px; }
-    .traction-inner { grid-template-columns: 1fr; gap: 48px; }
-
-    .contact { padding: 80px 32px; }
-
+    .hero-inner.wide { grid-template-columns: 1fr; gap: 48px; }
+    .hero .hero-logo { order: -1; }
+    .prose-section { padding: 72px 32px; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .contact { padding: 72px 32px; }
     footer { padding: 32px; }
   }
 
-  /* ════════════════════════════
-     RESPONSIVE — MOBILE (≤640px)
-     ════════════════════════════ */
   @media (max-width: 640px) {
-    /* Nav: show hamburger, hide links by default */
-    nav {
-      padding: 14px 20px;
-      flex-wrap: wrap;
-    }
-
-    .nav-hamburger {
-      display: flex;
-    }
-
+    nav { padding: 14px 20px; flex-wrap: wrap; }
+    .nav-hamburger { display: flex; }
     .nav-links {
       display: none;
       flex-direction: column;
@@ -459,198 +386,99 @@
       border-top: 1px solid var(--light-gray);
       padding-top: 12px;
     }
-
     .nav-links li { width: 100%; }
-
-    .nav-links a {
-      display: block;
-      padding: 12px 4px;
-      font-size: 14px;
-      border-bottom: 1px solid var(--light-gray);
-    }
-
-    .nav-links .nav-cta {
-      margin-top: 12px;
-      text-align: center;
-      border-radius: 4px;
-      border-bottom: none;
-    }
-
-    /* Show nav when checkbox is checked */
+    .nav-links a { display: block; padding: 12px 4px; font-size: 14px; border-bottom: 1px solid var(--light-gray); }
+    .nav-links .nav-cta { margin-top: 12px; text-align: center; border-radius: 4px; border-bottom: none; }
     #nav-toggle:checked ~ .nav-links { display: flex; }
-
-    /* Animate hamburger to X */
-    #nav-toggle:checked ~ label .nav-hamburger span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-    #nav-toggle:checked ~ label .nav-hamburger span:nth-child(2) {
-      opacity: 0;
-    }
-    #nav-toggle:checked ~ label .nav-hamburger span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
-
-    /* Hero */
     .hero { padding: 90px 20px 60px; min-height: auto; }
-    .hero-text h1 { font-size: 36px; }
-    .hero-text p { font-size: 16px; }
-    .hero-logo img { width: 160px; }
-
-    /* Sections */
-    .services { padding: 60px 20px; }
-    .traction { padding: 60px 20px; }
+    .prose-section { padding: 60px 20px; }
+    .services-grid { grid-template-columns: 1fr; }
     .contact { padding: 60px 20px; }
-
-    .service-card { padding: 32px 24px; }
-    .traction-card { padding: 24px; }
-
-    /* Contact form: single column */
     .contact-form { grid-template-columns: 1fr; }
     .form-group.full { grid-column: 1; }
     .form-submit { grid-column: 1; }
     .btn-submit { width: 100%; padding: 16px; }
-
-    /* Footer */
-    footer {
-      padding: 28px 20px;
-      flex-direction: column;
-      gap: 16px;
-      text-align: center;
-    }
-    .footer-legal { text-align: center; max-width: 100%; }
+    footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
   }
+
+
 </style>
 <script data-goatcounter="https://adaliaadvisors.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
-
 <nav>
   <div class="nav-logo">
-    <a href="#top" aria-label="Adalia Advisors — home">
+    <a href="index.html" class="active" aria-label="Adalia Advisors — home">
       <img src="img/logo-a.png" alt="Adalia Advisors">
     </a>
   </div>
-
-  <!-- CSS-only mobile menu: hidden checkbox + label -->
   <input type="checkbox" id="nav-toggle">
   <label for="nav-toggle" aria-label="Toggle navigation">
     <div class="nav-hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
   </label>
-
   <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#traction">Traction</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#contact" class="nav-cta">Work With Us</a></li>
+    <li><a href="how-we-think.html">How We Think</a></li>
+    <li><a href="how-we-help.html">How We Help</a></li>
+    <li><a href="advisory-teams.html">Advisory Teams</a></li>
+    <li><a href="trey-miller.html">Trey Miller</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Let's Talk</a></li>
   </ul>
 </nav>
 
-<div id="top"></div>
-
-<section class="hero">
+<section class="hero hero-tall">
   <div class="hero-inner">
-    <div class="hero-text">
-      <h1>Strategy that <span>sticks.</span></h1>
-      <p>Adalia Advisors<span class="tm">™</span> partners with founders and CEOs to build the operating discipline, strategic clarity, and transaction readiness that drives lasting growth.</p>
-      <a href="#services" class="hero-cta">Explore Our Services</a>
-    </div>
-    <div class="hero-logo">
-      <img src="img/logo-full.png" alt="Adalia Advisors">
+    <h1>Yesterday's way of operating<br>won't serve <span>tomorrow's ambitions.</span></h1>
+    <p class="hero-lead">Every organization eventually reaches a point where the habits, structures, and leadership conversations that created yesterday's success are no longer enough for what's next.</p>
+    <div class="btn-group">
+      <a href="index.html#contact" class="btn">Let's Compare Notes</a>
+      <a href="how-we-think.html" class="btn btn-outline">How We Think →</a>
     </div>
   </div>
 </section>
 
-<section class="services" id="services">
-  <div class="section-header">
-    <span class="section-label">What We Do</span>
-    <h2>Three ways we help<br>your business grow</h2>
-    <p>Whether you're building your operating foundation, planning for the future, or preparing for a transaction, we meet you where you are.</p>
-  </div>
-  <div class="services-grid">
-
-    <div class="service-card">
-      <div class="service-icon">
-        <img src="img/logo-a.png" alt="">
-      </div>
-      <h3>Getting Traction</h3>
-      <p>For companies ready to build a truly great business — whether you're just beginning your journey with Traction or looking to sustain the gains from a full implementation.</p>
-      <div class="service-sub">
-        <h4>Engagements</h4>
-        <ul>
-          <li>Pre-Traction: Begin practicing the habits from Traction without the cost of a full implementation</li>
-          <li>Post-Traction: Ongoing facilitation of annual and quarterly meetings</li>
-        </ul>
-      </div>
+<section class="prose-section">
+  <div class="prose-inner">
+    <div class="pull-quote">
+      <p>Nothing is obviously broken. But something no longer fits.</p>
     </div>
-
-    <div class="service-card">
-      <div class="service-icon">
-        <img src="img/logo-a.png" alt="">
-      </div>
-      <h3>Strategic Planning</h3>
-      <p>Structured, facilitated planning processes that align your leadership team around a clear vision and a disciplined path to get there.</p>
-      <div class="service-sub">
-        <h4>Engagements</h4>
-        <ul>
-          <li>Long-term strategic planning projects</li>
-          <li>Leadership team alignment sessions</li>
-          <li>Annual and multi-year roadmaps</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="service-card">
-      <div class="service-icon">
-        <img src="img/logo-a.png" alt="">
-      </div>
-      <h3>Transaction Services</h3>
-      <p>M&amp;A advisory grounded in real operator experience — from launching and scaling startups to executing complex transactions including cashless mergers and PE-backed platform sales.</p>
-      <div class="service-sub">
-        <h4>Engagements</h4>
-        <ul>
-          <li>Buy-side and sell-side advisory</li>
-          <li>Cashless mergers and equity transactions</li>
-          <li>PE-backed platform acquisitions</li>
-        </ul>
-      </div>
-    </div>
-
+    <p>Growth changes organizations. Leadership changes. Eventually, organizations outgrow the way they used to think together.</p>
+    <hr>
+    <h2>Execution isn't always the constraint.</h2>
+    <p>Oftentimes, leadership teams have outgrown the conversations, assumptions, and ways of working that once served them well.</p>
+    <p>The challenge usually isn't intelligence. Or effort. It's judgment.</p>
+    <p>Better judgment emerges from better leadership conversations.</p>
   </div>
 </section>
 
-<section class="traction" id="traction">
-  <div class="traction-inner">
-    <div class="traction-text">
-      <span class="section-label">Getting Traction</span>
-      <h2>Installing an operating system for your business</h2>
-      <p>The Entrepreneurial Operating System, as laid out in <a href="https://www.amazon.com/Traction-Get-Grip-Your-Business/dp/1936661837" target="_blank" rel="noopener" style="color:var(--carolina);text-decoration:underline;">Traction: Get a Grip on Your Business</a> by Gino Wickman gives leadership teams the tools and disciplines to get every person in your organization rowing in the same direction.</p>
-      <p>The challenge is that a full Traction implementation isn't always the right fit for where you are right now. </p>
+<section class="prose-section alt">
+  <div class="prose-inner">
+    <h2>Adalia Advisors exists for these moments.</h2>
+    <p>We help leadership teams navigate organizational inflection points by asking better questions, bringing together the right advisors, and creating the conditions for better judgment, stronger alignment, and confident action.</p>
+    <p>Every engagement begins with understanding the organization, the people leading it, and the decisions that matter most — not with applying a predefined methodology.</p>
+    <div class="btn-group" style="margin-top:36px;">
+      <a href="how-we-help.html" class="btn btn-dark">How We Help</a>
+      <a href="how-we-think.html" class="btn btn-dark">How We Think</a>
     </div>
-    <div class="traction-cards">
-      <div class="traction-card">
-        <h3>Pre-Traction</h3>
-        <p>Your company is ready to build the habits and disciplines from Traction, but you're not yet at the size or budget that justifies a full professional implementation. We work alongside your leadership team to begin practicing the core tools and rhythms from Traction — so you're building the right foundation from day one.</p>
-      </div>
-      <div class="traction-card">
-        <h3>Post-Traction</h3>
-        <p>You've completed a full Traction implementation and no longer need a full-time implementer, but you want a trusted, experienced advisor in the room to facilitate your annual and quarterly sessions and keep the system healthy long-term.</p>
-      </div>
-    </div>
+  </div>
+</section>
+
+<section class="prose-section">
+  <div class="prose-inner">
+    <h2>No single advisor has all the answers.</h2>
+    <p>The best judgment is rarely the product of a single perspective. It emerges when the right people ask the right questions at the right time.</p>
+    <p>That's why Adalia Advisors builds advisory teams around each engagement, bringing together experienced operators, facilitators, subject matter experts, and strategic advisors as the situation requires.</p>
+    <a href="advisory-teams.html" class="btn btn-dark" style="margin-top:12px;">Our Advisory Teams</a>
   </div>
 </section>
 
 <section class="contact" id="contact">
   <div class="contact-inner">
-    <div class="section-header">
-      <span class="section-label">Get In Touch</span>
-      <h2>Let's talk about<br>where you're headed</h2>
-      <p>Tell us a little about your business and what you're working on. We'll be in touch shortly.</p>
-    </div>
+    <span class="section-label">Let's Compare Notes</span>
+    <h2>Is this the moment?</h2>
+    <p>If your leadership team is navigating meaningful growth, organizational change, succession, acquisition, or another transformational inflection point, we'd welcome the opportunity to compare notes. Every engagement begins with understanding your organization before discussing our approach.</p>
     <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="48da2bf9-2d17-4e81-bd69-edeaab9352f0">
       <input type="hidden" name="subject" value="New Inquiry — Adalia Advisors">
@@ -669,23 +497,24 @@
         <input type="email" id="email" name="email" placeholder="you@company.com" required>
       </div>
       <div class="form-group">
-        <label for="company">Company</label>
+        <label for="company">Organization</label>
         <input type="text" id="company" name="company" placeholder="Company name">
       </div>
       <div class="form-group full">
-        <label for="service">I'm interested in</label>
+        <label for="service">What brings you here?</label>
         <select id="service" name="service">
-          <option value="">Select a service area...</option>
-          <option value="pre-traction">Getting Traction — Pre-Traction</option>
-          <option value="post-traction">Maintaining Traction — Post-Traction</option>
+          <option value="">Select...</option>
+          <option value="executive-facilitation">Executive Facilitation</option>
           <option value="strategic-planning">Strategic Planning</option>
-          <option value="transaction-services">Transaction Services</option>
+          <option value="leadership-os">Leadership Operating System</option>
+          <option value="transaction">Transaction Preparation</option>
+          <option value="board-advisory">Board &amp; Executive Advisory</option>
           <option value="not-sure">Not sure yet</option>
         </select>
       </div>
       <div class="form-group full">
-        <label for="message">Tell us about your business</label>
-        <textarea id="message" name="message" placeholder="What's your biggest challenge right now? What are you trying to build?"></textarea>
+        <label for="message">Tell us about your organization</label>
+        <textarea id="message" name="message" placeholder="What's the moment you're navigating?"></textarea>
       </div>
       <div class="form-submit">
         <button type="submit" class="btn-submit">Send Message</button>
@@ -695,16 +524,10 @@
 </section>
 
 <footer>
-  <a href="#top" aria-label="Adalia Advisors — home"><img src="img/logo-a.png" alt="Adalia Advisors"></a>
-  <div class="footer-legal">
-    <p>&copy; 2026 Adalia Advisors<span class="tm">™</span>. All rights reserved.</p>
-    <p class="footer-tm">
-      Adalia<span class="tm">™</span>, Adalia Works<span class="tm">™</span>,
-      Adalia Advisors<span class="tm">™</span>, Adalia Ventures<span class="tm">™</span>,
-      and related marks are trademarks of TLHG Ventures LLC.
-    </p>
-  </div>
+  <a href="index.html" class="footer-logo" aria-label="Adalia Advisors — home">
+    <img src="img/logo-a.png" alt="Adalia Advisors">
+  </a>
+  <p>&copy; 2026 Adalia Advisors. All rights reserved.</p>
 </footer>
-
 </body>
 </html>
