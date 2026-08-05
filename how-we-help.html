@@ -261,6 +261,23 @@
     color: var(--text-muted);
     margin-bottom: 0;
   }
+  a.service-card-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  a.service-card-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(26,63,163,0.12);
+  }
+  .card-link-hint {
+    display: block;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--carolina);
+    letter-spacing: 0.02em;
+  }
 
   /* ── CONTACT ── */
   .contact {
@@ -449,10 +466,11 @@
         <h3>Strategic Planning</h3>
         <p>Clarifying direction, priorities, and the decisions that will shape what's next — with the rigor and focus that separates real plans from well-intentioned slides.</p>
       </div>
-      <div class="service-card">
+      <a href="traction.html" class="service-card service-card-link">
         <h3>Leadership Operating Systems</h3>
         <p>Designing the structures, rhythms, and accountability that support healthy organizations — so that great leadership conversations don't stay in the room.</p>
-      </div>
+        <span class="card-link-hint">Learn about Getting &amp; Maintaining Traction →</span>
+      </a>
       <div class="service-card">
         <h3>Transaction Preparation</h3>
         <p>Helping organizations prepare for acquisitions, succession, and other strategic transitions — with experienced counsel from people who have navigated these moments firsthand.</p>
