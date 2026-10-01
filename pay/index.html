@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Pay an Invoice — Adalia Advisors</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #143ca0;
+      --blue:  #3c8cc8;
+      --dark:  #1a1a1a;
+      --mid:   #444;
+      --light: #777;
+      --rule:  #e5e5e5;
+      --white: #fff;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ─────────────────────────────────────────────── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+    nav {
+      display: flex;
+      gap: 1.75rem;
+      align-items: center;
+    }
+    nav a {
+      font-size: 0.82rem;
+      color: var(--mid);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.15s;
+    }
+    nav a:hover { color: var(--navy); }
+    nav a.cta {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    /* ── Main ───────────────────────────────────────────────── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1.5rem;
+    }
+
+    .page-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+      text-align: center;
+      margin-bottom: 0.75rem;
+      max-width: 520px;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--light);
+      text-align: center;
+      line-height: 1.6;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Form card ──────────────────────────────────────────── */
+    .form-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 12px rgba(20, 60, 160, 0.07);
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--dark);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      letter-spacing: 0.04em;
+    }
+    input[type="text"]:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(60, 140, 200, 0.15);
+    }
+    input[type="text"]::placeholder {
+      color: #bbb;
+      letter-spacing: normal;
+    }
+
+    .btn {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn:hover:not(:disabled) { background: #0f2f8a; }
+    .btn:disabled { background: #aaa; cursor: not-allowed; }
+
+    /* ── Status messages ────────────────────────────────────── */
+    .msg {
+      margin-top: 1rem;
+      padding: 0.7rem 0.9rem;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      display: none;
+    }
+    .msg.show     { display: block; }
+    .msg.error    { background: #fdf2f2; color: #b03030; border: 1px solid #f5c6c6; }
+    .msg.success  { background: #f0f7ff; color: var(--navy); border: 1px solid #ccdff5; }
+
+    .spinner {
+      display: none;
+      margin: 1rem auto 0;
+      width: 26px; height: 26px;
+      border: 2.5px solid var(--rule);
+      border-top-color: var(--navy);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    .spinner.show { display: block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Divider ────────────────────────────────────────────── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.75rem 0;
+      color: #ccc;
+      font-size: 0.75rem;
+    }
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ── Check option ───────────────────────────────────────── */
+    .alt-pay {
+      font-size: 0.82rem;
+      color: var(--light);
+      line-height: 1.7;
+      text-align: center;
+    }
+    .alt-pay strong { color: var(--mid); }
+    .alt-pay a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .alt-pay a:hover { text-decoration: underline; }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2.5rem;
+      border-top: 1px solid var(--rule);
+    }
+    footer img {
+      height: 28px;
+      width: auto;
+      opacity: 0.6;
+    }
+    .copyright {
+      font-size: 0.75rem;
+      color: #aaa;
+    }
+
+    /* ── Mobile ─────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      header { padding: 1rem 1.25rem; }
+      nav { gap: 1rem; }
+      nav a:not(.cta) { display: none; }
+      main { padding: 2.5rem 1rem; }
+      h1 { font-size: 1.5rem; }
+      footer { padding: 1rem 1.25rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a class="logo" href="https://adaliaadvisors.com">
+      <img src="/img/logo-a.png" alt="Adalia Advisors" />
+    </a>
+    <nav>
+      <a href="https://adaliaadvisors.com/how-we-think">How We Think</a>
+      <a href="https://adaliaadvisors.com/how-we-help">How We Help</a>
+      <a href="https://adaliaadvisors.com/trey-miller">Trey Miller</a>
+      <a href="https://adaliaadvisors.com/#contact" class="cta">Let's Talk</a>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <p class="page-label">Secure Payment</p>
+    <h1>Pay an Invoice</h1>
+    <p class="subtitle">
+      Enter your invoice number to proceed to secure online payment
+      via ACH bank transfer — at no cost to you.
+    </p>
+
+    <div class="form-card">
+      <label class="field-label" for="invoice-number">Invoice Number</label>
+      <input
+        type="text"
+        id="invoice-number"
+        placeholder="e.g. ITC-0001"
+        autocomplete="off"
+        spellcheck="false"
+      />
+
+      <button class="btn" id="pay-btn" onclick="lookupInvoice()">
+        Find My Invoice
+      </button>
+
+      <div class="spinner" id="spinner"></div>
+      <div class="msg error"   id="msg-error"></div>
+      <div class="msg success" id="msg-success"></div>
+
+      <div class="divider">or</div>
+
+      <div class="alt-pay">
+        <strong>Pay by check:</strong> Make payable to <strong>TLHG Ventures LLC</strong>
+        and mail to 616 E. Lake Dr., Greensboro, NC 27401.<br /><br />
+        Questions? Email
+        <a href="mailto:tmiller@adaliaadvisors.com">tmiller@adaliaadvisors.com</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <a href="https://adaliaadvisors.com">
+      <img src="/img/logo-a.png" alt="Adalia Advisors" />
+    </a>
+    <span class="copyright">© 2026 Adalia Advisors. All rights reserved.</span>
+  </footer>
+
+  <script>
+    const WORKER_URL = "https://pay.adalia.workers.dev";
+
+    const btn     = document.getElementById("pay-btn");
+    const spinner = document.getElementById("spinner");
+    const errMsg  = document.getElementById("msg-error");
+    const okMsg   = document.getElementById("msg-success");
+    const input   = document.getElementById("invoice-number");
+
+    input.addEventListener("keydown", e => { if (e.key === "Enter") lookupInvoice(); });
+
+    function setLoading(on) {
+      btn.disabled = on;
+      btn.textContent = on ? "Looking up…" : "Find My Invoice";
+      spinner.classList.toggle("show", on);
+    }
+
+    function showError(msg) {
+      errMsg.textContent = msg;
+      errMsg.classList.add("show");
+      okMsg.classList.remove("show");
+    }
+
+    function showSuccess(msg) {
+      okMsg.textContent = msg;
+      okMsg.classList.add("show");
+      errMsg.classList.remove("show");
+    }
+
+    async function lookupInvoice() {
+      const number = input.value.trim().toUpperCase();
+      if (!number) { showError("Please enter your invoice number."); input.focus(); return; }
+
+      errMsg.classList.remove("show");
+      okMsg.classList.remove("show");
+      setLoading(true);
+
+      try {
+        const res  = await fetch(`${WORKER_URL}?invoice=${encodeURIComponent(number)}`);
+        const data = await res.json();
+
+        if (data.status === "paid") {
+          showSuccess(`Invoice ${number} has already been paid. Contact tmiller@adaliaadvisors.com with any questions.`);
+          setLoading(false);
+          return;
+        }
+
+        if (data.url) {
+          showSuccess("Invoice found — redirecting you to secure payment…");
+          setTimeout(() => { window.location.href = data.url; }, 700);
+          return;
+        }
+
+        showError(data.error || "Something went wrong. Please try again.");
+      } catch {
+        showError("Could not reach the payment system. Please try again or email tmiller@adaliaadvisors.com.");
+      }
+
+      setLoading(false);
+    }
+  </script>
+
+</body>
+</html>
