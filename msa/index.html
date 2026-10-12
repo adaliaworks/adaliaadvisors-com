@@ -406,8 +406,10 @@
 
 
   /* ── TERMS ── */
+  :root { --adalia: #193FA2; }
+  .hero h1, .hero h1 span { color: var(--white); }
   .hero .hero-lead.meta { font-size: 17px; margin-bottom: 0; }
-  .hero .hero-lead.meta mark { background: rgba(75,156,211,0.22); color: var(--white); }
+  .hero .hero-lead.meta mark { background: rgba(255,255,255,0.16); color: var(--white); }
   .terms { padding: 72px 60px 100px; }
   .terms .prose-inner p { font-size: 16px; line-height: 1.8; margin-bottom: 18px; }
   .notice {
@@ -416,8 +418,8 @@
     padding: 18px 24px;
     margin: 0 0 36px;
   }
-  .notice p { margin-bottom: 0 !important; color: var(--navy) !important; }
-  .notice p strong { color: var(--navy); }
+  .terms .prose-inner .notice p { margin-bottom: 0; color: var(--adalia); }
+  .notice p strong { color: var(--adalia); }
   .toc {
     border-top: 1px solid var(--light-gray);
     border-bottom: 1px solid var(--light-gray);
@@ -426,30 +428,42 @@
   }
   .toc-label {
     font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--carolina); display: block; margin-bottom: 14px;
+    color: var(--adalia); display: block; margin-bottom: 14px;
   }
   .toc ol { list-style: none; columns: 2; column-gap: 40px; }
   .toc li { break-inside: avoid; padding: 4px 0; }
   .toc a { color: var(--text); text-decoration: none; font-size: 15px; }
-  .toc a:hover { color: var(--carolina); }
-  .toc .num { color: var(--royal); font-weight: 600; display: inline-block; min-width: 26px; }
+  .toc a:hover { color: var(--adalia); text-decoration: underline; }
+  .toc .num { color: var(--adalia); font-weight: 600; display: inline-block; min-width: 26px; }
   .terms-section { padding-top: 56px; scroll-margin-top: 80px; }
-  .terms .prose-inner .terms-section h2 { font-size: clamp(24px, 3vw, 32px); margin-bottom: 24px; }
-  .terms-section h2 .num { color: var(--carolina); }
+  .terms .prose-inner .terms-section h2 { font-size: clamp(24px, 3vw, 32px); margin-bottom: 24px; color: var(--adalia); }
+  .terms .prose-inner .terms-section h3 { font-size: 20px; margin-top: 36px; color: var(--adalia); }
   .clause { scroll-margin-top: 90px; }
-  .clause strong { color: var(--navy) !important; }
-  .clause .num { color: var(--royal); margin-right: 4px; }
+  .terms .prose-inner p strong { color: var(--adalia); }
+  .clause .num { margin-right: 4px; }
   .clause:target { background: var(--off-white); box-shadow: -12px 0 0 var(--off-white), 12px 0 0 var(--off-white); }
   .indent { margin: 0 0 18px 28px; padding-left: 20px; border-left: 2px solid var(--light-gray); }
-  a.xref { color: var(--royal); text-decoration: none; border-bottom: 1px solid rgba(26,63,163,0.25); white-space: nowrap; }
-  a.xref:hover { color: var(--carolina); border-color: var(--carolina); }
+  a.xref { color: var(--adalia); text-decoration: none; border-bottom: 1px solid rgba(25,63,162,0.25); white-space: nowrap; }
+  a.xref:hover { border-color: var(--adalia); }
   mark { background: #fff4c2; color: inherit; padding: 0 2px; border-radius: 2px; }
   .flag { background: #fdecea; color: #8a2a1f; font-weight: 600; padding: 1px 4px; border-radius: 2px; }
   .flag-line { margin-top: 8px; }
+  .items { margin: 0 0 24px; padding: 0; list-style: none; }
+  .items li { font-size: 16px; line-height: 1.75; color: var(--text-muted); padding: 6px 0; border-bottom: 1px solid var(--light-gray); }
+  .items li strong { color: var(--adalia); font-weight: 600; }
+  ol.items li { padding-left: 32px; position: relative; }
+  ol.items .num { color: var(--adalia); font-weight: 600; position: absolute; left: 0; }
+  ul.items li { padding-left: 18px; position: relative; }
+  ul.items li::before { content: ''; position: absolute; left: 2px; top: 17px; width: 6px; height: 6px; border-radius: 50%; background: var(--carolina); }
+  .terms .prose-inner p.doc-title { text-align: center; letter-spacing: 0.14em; margin: 32px 0 24px; }
+  .terms .prose-inner .doc-title strong, .terms .prose-inner .sig-party strong { color: var(--adalia); }
+  .terms .prose-inner p.sig-party { margin: 36px 0 10px; }
+  .terms .prose-inner p.sig-line { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 15px; }
+  .sig-line span { white-space: nowrap; }
   .table-wrap { overflow-x: auto; margin: 4px 0 24px; }
   .terms table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.6; }
   .terms th {
-    background: var(--navy); color: var(--white); text-align: left; padding: 10px 14px;
+    background: var(--adalia); color: var(--white); text-align: left; padding: 10px 14px;
     font-weight: 600; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
   }
   .terms td { padding: 10px 14px; border-bottom: 1px solid var(--light-gray); color: var(--text-muted); vertical-align: top; }
@@ -459,6 +473,7 @@
     .terms { padding: 40px 20px 60px; }
     .toc ol { columns: 1; }
     .indent { margin-left: 8px; padding-left: 14px; }
+    .sig-line span { white-space: normal; }
   }
   @media print {
     nav, footer, .toc { display: none; }
@@ -467,6 +482,7 @@
     .hero h1, .hero h1 span, .hero .hero-lead, .hero .hero-lead.meta mark { color: #000; }
     .terms { padding: 0; }
     .terms-section { padding-top: 24px; }
+    #cover-sheet { break-before: page; }
     a.xref { color: inherit; border: 0; }
   }
 </style>
@@ -498,7 +514,7 @@
 
 <section class="hero hero-compact">
   <div class="hero-inner">
-    <h1>Standard Terms /<br><span>Master Services Agreement</span></h1>
+    <h1>Adalia Advisors<br>Standard Terms</h1>
     <p class="hero-lead meta">Version 0.1 — Working Draft — <mark>[DATE]</mark><br>Posted at adaliaadvisors.com/terms/<mark>[v0-1]</mark></p>
   </div>
 </section>
@@ -523,6 +539,8 @@
   <li><a href="#s10"><span class="num">10.</span> Limitation of Liability</a></li>
   <li><a href="#s11"><span class="num">11.</span> Indemnification</a></li>
   <li><a href="#s12"><span class="num">12.</span> Insurance, Publicity, Disputes, and General</a></li>
+  <li><a href="#cover-sheet"><span class="num"></span> Appendix — MSA Cover Sheet</a></li>
+  <li><a href="#open-items-and-attorney-flags"><span class="num"></span> Open Items and Attorney Flags</a></li>
 </ol>
 </div>
 <section class="terms-section" id="s1">
@@ -669,6 +687,55 @@
 <p class="clause" id="s12-13"><strong><span class="num">12.13</span> Severability; waiver.</strong> An unenforceable provision is modified to the minimum extent necessary or severed, and the remainder continues. Failure to enforce is not a waiver; a waiver is effective only in writing.</p>
 <p class="clause" id="s12-14"><strong><span class="num">12.14</span> Entire agreement.</strong> These terms, together with the Engagement Letters incorporating them, are the entire agreement on their subject matter and supersede prior discussions, proposals, and agreements. Preprinted or standard terms on Client's purchase order, vendor portal, or invoice-approval system have no effect.</p>
 <p class="clause" id="s12-15"><strong><span class="num">12.15</span> Contracting parties.</strong> Engagements are between the entities named in the Engagement Letter. No individual owner, officer, employee, or member of either party has personal liability.</p>
+</section>
+<section class="terms-section" id="cover-sheet">
+<h2>Appendix — MSA Cover Sheet</h2>
+<div class="notice"><p>For clients whose procurement process requires a countersigned master agreement. Attaching this cover sheet converts the Standard Terms above into a signed Master Services Agreement without changing a word of them.</p></div>
+<p class="doc-title"><strong>MASTER SERVICES AGREEMENT</strong></p>
+<p>This Master Services Agreement is entered into as of <mark>[DATE]</mark> by <strong><mark>[Adalia Advisors, LLC]</mark></strong>, a <mark>[North Carolina limited liability company]</mark> ("Consultant"), and <strong><mark>[Client legal name]</mark></strong>, a <mark>[state and entity type]</mark> ("Client").</p>
+<p>The Adalia Advisors Standard Terms, version <mark>[X.X]</mark>, effective <mark>[DATE]</mark>, are attached and incorporated in full and constitute the master terms governing all engagements between the parties. References in the Standard Terms to "these terms," "these Standard Terms," and equivalent phrases mean this Agreement. Each Engagement Letter executed by the parties is governed by this Agreement.</p>
+<p class="sig-party"><strong><mark>[Adalia Advisors, LLC]</mark></strong></p>
+<p class="sig-line"><span>By: ______________________</span><span>Name: ______________________</span><span>Title: ______________</span><span>Date: __________</span></p>
+<p class="sig-party"><strong><mark>[Client]</mark></strong></p>
+<p class="sig-line"><span>By: ______________________</span><span>Name: ______________________</span><span>Title: ______________</span><span>Date: __________</span></p>
+</section>
+<section class="terms-section" id="open-items-and-attorney-flags">
+<h2>Open Items and Attorney Flags</h2>
+<h3 id="decisions-still-open">Decisions still open</h3>
+<ol class="items">
+<li><span class="num">1.</span> Dispute forum (<a class="xref" href="#s12-7">§ 12.7</a>) — Guilford County courts or binding arbitration.</li>
+<li><span class="num">2.</span> Claims period (<a class="xref" href="#s9-5">§ 9.5</a>) — twelve or eighteen months.</li>
+<li><span class="num">3.</span> Attorneys' fees (<a class="xref" href="#s12-9">§ 12.9</a>) — mutual prevailing-party, or collections only.</li>
+<li><span class="num">4.</span> Day and half-day hours and overrun increment (<a class="xref" href="#s3-3">§ 3.3</a>).</li>
+<li><span class="num">5.</span> Whether a pure travel day consumes a day-rate (<a class="xref" href="#s3-5">§ 3.5</a>).</li>
+<li><span class="num">6.</span> Cancellation windows and percentages (<a class="xref" href="#s2-7">§ 2.7</a>).</li>
+<li><span class="num">7.</span> Confidentiality duration (<a class="xref" href="#s5-5">§ 5.5</a>) — three or five years.</li>
+<li><span class="num">8.</span> Window defining "scheduled work" payable on termination (<a class="xref" href="#s4-3">§ 4.3</a>(b)).</li>
+<li><span class="num">9.</span> Client transaction closing mid-engagement (<a class="xref" href="#s4-5">§ 4.5</a>) — assignment or termination.</li>
+<li><span class="num">10.</span> Additional categories excluded from AI tools (<a class="xref" href="#s7-4">§ 7.4</a>).</li>
+<li><span class="num">11.</span> Client's right to copies of recordings and transcripts (<a class="xref" href="#s7-8">§ 7.8</a>).</li>
+<li><span class="num">12.</span> Breach notification deadline (<a class="xref" href="#s8-4">§ 8.4</a>).</li>
+<li><span class="num">13.</span> Tail coverage period (<a class="xref" href="#s12-1">§ 12.1</a>) — two or three years.</li>
+<li><span class="num">14.</span> Entity name and state throughout.</li>
+</ol>
+<h3 id="flags-for-counsel">Flags for counsel</h3>
+<ul class="items">
+<li><strong><a class="xref" href="#s3-8">§ 3.8</a></strong> — late charge rate under North Carolina law.</li>
+<li><strong><a class="xref" href="#s3-10">§ 3.10</a></strong> — collection costs must be drafted to N.C. Gen. Stat. § 6-21.2, including its notice, cure, and cap requirements. Borrowed boilerplate will not work.</li>
+<li><strong><a class="xref" href="#s9-5">§ 9.5</a></strong> — enforceability of a contractual limitations period in North Carolina.</li>
+<li><strong><a class="xref" href="#s1-5">§ 1.5</a> and <a class="xref" href="#s1-3">§ 1.3</a></strong> — the incorporation-by-reference structure. This document is accepted by signing an Engagement Letter that names it by version and date, rather than by signature on the document itself. Confirm that is sufficient for formation, and that the versioning mechanism holds.</li>
+<li><strong><a class="xref" href="#s7-7">§ 7.7</a></strong> — recording consent across states. North Carolina is one-party consent; participants in California, Pennsylvania, Illinois, Florida, Maryland, Massachusetts, or Washington may trigger all-party consent requirements. Two questions: whether announcement plus continued participation is sufficient implied consent in the strictest of those states, and whether AI speaker diarization touches Illinois BIPA or Texas CUBI.</li>
+<li><strong><a class="xref" href="#s2-2">§ 2.2</a></strong> — the advisory-only disclaimer as it relates to exit planning, transaction readiness, and business brokerage licensing in North Carolina.</li>
+<li><strong><a class="xref" href="#s5-7">§ 5.7</a> and <a class="xref" href="#s5-8">§ 5.8</a></strong> — confirm the unaided-memory residuals clause and the retention right do not conflict.</li>
+<li><strong>Jury trial waiver</strong> — deliberately omitted. North Carolina courts have been unfriendly to contractual jury trial waivers.</li>
+</ul>
+<h3 id="deliberately-not-included">Deliberately not included</h3>
+<ul class="items">
+<li>Non-competition or client-restriction obligations on Consultant (<a class="xref" href="#s12-4">§ 12.4</a> forecloses them).</li>
+<li>Unqualified return-or-destroy obligation (<a class="xref" href="#s5-8">§ 5.8</a> and <a class="xref" href="#s8-1">§ 8.1</a> preserve the archival copy).</li>
+<li>Uncapped confidentiality liability (<a class="xref" href="#s10-3">§ 10.3</a> super-cap instead).</li>
+<li>Peer group session terms — governed by separate agreements.</li>
+</ul>
 </section>
   </div>
 </section>
