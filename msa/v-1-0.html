@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Standard Terms — Adalia Advisors</title>
+<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+<link rel="icon" type="image/png" href="/img/logo-a.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --carolina: #4B9CD3;
+    --royal: #1A3FA3;
+    --navy: #163265;
+    --white: #ffffff;
+    --off-white: #f7f8fc;
+    --light-gray: #edf0f7;
+    --text: #1a1f36;
+    --text-muted: #5a6380;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 60px;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .nav-logo a { display: block; line-height: 0; }
+  .nav-logo img { height: 44px; display: block; }
+  #nav-toggle { display: none; }
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: var(--text);
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--carolina); }
+  .nav-links a.active { color: var(--carolina); }
+  .nav-cta {
+    background: var(--royal) !important;
+    color: var(--white) !important;
+    padding: 10px 24px;
+    border-radius: 4px;
+  }
+  .nav-cta:hover { background: var(--carolina) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    padding: 140px 60px 100px;
+  }
+  .hero.hero-tall { min-height: 100vh; }
+  .hero.hero-compact { min-height: 0; padding: 120px 60px 48px; }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(75,156,211,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-inner.wide { max-width: 1200px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--carolina);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .hero h1 span { color: var(--carolina); }
+  .hero .hero-lead {
+    font-size: 20px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.72);
+    font-weight: 300;
+    max-width: 680px;
+    margin-bottom: 48px;
+  }
+  .hero .hero-logo img { width: 300px; max-width: 100%; }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-block;
+    background: var(--carolina);
+    color: var(--white);
+    text-decoration: none;
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  .btn:hover { background: #5baee3; }
+  .btn-outline {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.4);
+    color: var(--white);
+  }
+  .btn-outline:hover { border-color: var(--carolina); background: rgba(75,156,211,0.1); }
+  .btn-dark {
+    background: var(--royal);
+    color: var(--white);
+  }
+  .btn-dark:hover { background: var(--carolina); }
+  .btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  /* ── PROSE SECTIONS ── */
+  .prose-section {
+    padding: 100px 60px;
+    background: var(--white);
+  }
+  .prose-section.alt { background: var(--off-white); }
+  .prose-section.dark { background: var(--navy); }
+  .prose-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .prose-inner.wide { max-width: 1200px; }
+
+  .prose-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 28px;
+  }
+  .prose-section.dark .prose-inner h2 { color: var(--white); }
+  .prose-inner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+    margin-top: 48px;
+  }
+  .prose-section.dark .prose-inner h3 { color: var(--carolina); }
+  .prose-inner p {
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+  .prose-section.dark .prose-inner p { color: rgba(255,255,255,0.65); }
+  .prose-inner p strong { color: var(--text); font-weight: 600; }
+  .prose-inner hr {
+    border: none;
+    border-top: 1px solid var(--light-gray);
+    margin: 56px 0;
+  }
+  .prose-section.dark .prose-inner hr { border-color: rgba(255,255,255,0.1); }
+
+  /* Pull quote style */
+  .pull-quote {
+    border-left: 4px solid var(--carolina);
+    padding: 8px 0 8px 28px;
+    margin: 40px 0;
+  }
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px !important;
+    font-style: italic;
+    color: var(--navy) !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* ── SERVICES GRID ── */
+  .services-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .service-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 40px 32px;
+    border-top: 4px solid var(--carolina);
+    display: flex;
+    flex-direction: column;
+  }
+  .service-card:nth-child(2) { border-top-color: var(--royal); }
+  .service-card:nth-child(3) { border-top-color: var(--navy); }
+  .service-card:nth-child(4) { border-top-color: var(--carolina); }
+  .service-card:nth-child(5) { border-top-color: var(--royal); }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 14px;
+    margin-top: 0;
+  }
+  .service-card p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-muted);
+    margin-bottom: 0;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 100px 60px;
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: -150px; right: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(75,156,211,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contact-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .contact h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .contact > .contact-inner > p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+  .contact-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+    padding: 14px 18px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    outline: none;
+    -webkit-appearance: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .form-group select option { background: var(--navy); color: var(--white); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--carolina);
+    background: rgba(255,255,255,0.1);
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.22); }
+  .form-group textarea { resize: vertical; min-height: 130px; }
+  .form-submit { grid-column: 1 / -1; margin-top: 8px; }
+  .btn-submit {
+    background: var(--carolina);
+    color: var(--white);
+    border: none;
+    padding: 16px 44px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-submit:hover { background: #5baee3; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0a1a3a;
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  footer a.footer-logo { display: block; line-height: 0; }
+  footer img { height: 32px; display: block; }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.3); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 14px 32px; }
+    .hero { padding: 100px 32px 60px; }
+    .hero-inner.wide { grid-template-columns: 1fr; gap: 48px; }
+    .hero .hero-logo { order: -1; }
+    .prose-section { padding: 72px 32px; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .contact { padding: 72px 32px; }
+    footer { padding: 32px; }
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 14px 20px; flex-wrap: wrap; }
+    .nav-hamburger { display: flex; }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      width: 100%;
+      margin-top: 12px;
+      border-top: 1px solid var(--light-gray);
+      padding-top: 12px;
+    }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 12px 4px; font-size: 14px; border-bottom: 1px solid var(--light-gray); }
+    .nav-links .nav-cta { margin-top: 12px; text-align: center; border-radius: 4px; border-bottom: none; }
+    #nav-toggle:checked ~ .nav-links { display: flex; }
+    .hero { padding: 90px 20px 60px; min-height: auto; }
+    .prose-section { padding: 60px 20px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .contact { padding: 60px 20px; }
+    .contact-form { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: 1; }
+    .form-submit { grid-column: 1; }
+    .btn-submit { width: 100%; padding: 16px; }
+    footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
+  }
+
+
+
+  /* ── TERMS ── */
+  :root { --adalia: #193FA2; }
+  .hero h1, .hero h1 span { color: var(--white); }
+  .hero .hero-lead.meta { font-size: 17px; margin-bottom: 0; }
+  .hero .hero-lead.meta mark { background: rgba(255,255,255,0.16); color: var(--white); }
+  .terms { padding: 72px 60px 100px; }
+  .terms .prose-inner p { font-size: 16px; line-height: 1.8; margin-bottom: 18px; }
+  .notice {
+    background: var(--off-white);
+    border-left: 4px solid var(--carolina);
+    padding: 18px 24px;
+    margin: 0 0 36px;
+  }
+  .terms .prose-inner .notice p { margin-bottom: 0; color: var(--adalia); }
+  .notice p strong { color: var(--adalia); }
+  .toc {
+    border-top: 1px solid var(--light-gray);
+    border-bottom: 1px solid var(--light-gray);
+    padding: 28px 0;
+    margin: 40px 0 8px;
+  }
+  .toc-label {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--adalia); display: block; margin-bottom: 14px;
+  }
+  .toc ol { list-style: none; columns: 2; column-gap: 40px; }
+  .toc li { break-inside: avoid; padding: 4px 0; }
+  .toc a { color: var(--text); text-decoration: none; font-size: 15px; }
+  .toc a:hover { color: var(--adalia); text-decoration: underline; }
+  .toc .num { color: var(--adalia); font-weight: 600; display: inline-block; min-width: 26px; }
+  .terms-section { padding-top: 56px; scroll-margin-top: 80px; }
+  .terms .prose-inner .terms-section h2 { font-size: clamp(24px, 3vw, 32px); margin-bottom: 24px; color: var(--adalia); }
+  .terms .prose-inner .terms-section h3 { font-size: 20px; margin-top: 36px; color: var(--adalia); }
+  .clause { scroll-margin-top: 90px; }
+  .terms .prose-inner p strong { color: var(--adalia); }
+  .clause .num { margin-right: 4px; }
+  .clause:target { background: var(--off-white); box-shadow: -12px 0 0 var(--off-white), 12px 0 0 var(--off-white); }
+  .indent { margin: 0 0 18px 28px; padding-left: 20px; border-left: 2px solid var(--light-gray); }
+  a.xref { color: var(--adalia); text-decoration: none; border-bottom: 1px solid rgba(25,63,162,0.25); white-space: nowrap; }
+  a.xref:hover { border-color: var(--adalia); }
+  mark { background: #fff4c2; color: inherit; padding: 0 2px; border-radius: 2px; }
+  .flag { background: #fdecea; color: #8a2a1f; font-weight: 600; padding: 1px 4px; border-radius: 2px; }
+  .flag-line { margin-top: 8px; }
+  .items { margin: 0 0 24px; padding: 0; list-style: none; }
+  .items li { font-size: 16px; line-height: 1.75; color: var(--text-muted); padding: 6px 0; border-bottom: 1px solid var(--light-gray); }
+  .items li strong { color: var(--adalia); font-weight: 600; }
+  ol.items li { padding-left: 32px; position: relative; }
+  ol.items .num { color: var(--adalia); font-weight: 600; position: absolute; left: 0; }
+  ul.items li { padding-left: 18px; position: relative; }
+  ul.items li::before { content: ''; position: absolute; left: 2px; top: 17px; width: 6px; height: 6px; border-radius: 50%; background: var(--carolina); }
+  .terms .prose-inner p.doc-title { text-align: center; letter-spacing: 0.14em; margin: 32px 0 24px; }
+  .terms .prose-inner .doc-title strong, .terms .prose-inner .sig-party strong { color: var(--adalia); }
+  .terms .prose-inner p.sig-party { margin: 36px 0 10px; }
+  .terms .prose-inner p.sig-line { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 15px; }
+  .sig-line span { white-space: nowrap; }
+  .table-wrap { overflow-x: auto; margin: 4px 0 24px; }
+  .terms table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.6; }
+  .terms th {
+    background: var(--adalia); color: var(--white); text-align: left; padding: 10px 14px;
+    font-weight: 600; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .terms td { padding: 10px 14px; border-bottom: 1px solid var(--light-gray); color: var(--text-muted); vertical-align: top; }
+  .terms tbody tr:nth-child(even) td { background: var(--off-white); }
+  @media (max-width: 900px) { .terms { padding: 56px 32px 72px; } }
+  @media (max-width: 640px) {
+    .terms { padding: 40px 20px 60px; }
+    .toc ol { columns: 1; }
+    .indent { margin-left: 8px; padding-left: 14px; }
+    .sig-line span { white-space: normal; }
+  }
+  @media print {
+    nav, footer, .toc { display: none; }
+    .hero { background: none; padding: 0 0 16px; min-height: 0; }
+    .hero::before { display: none; }
+    .hero h1, .hero h1 span, .hero .hero-lead, .hero .hero-lead.meta mark { color: #000; }
+    .terms { padding: 0; }
+    .terms-section { padding-top: 24px; }
+    #cover-sheet { break-before: page; }
+    a.xref { color: inherit; border: 0; }
+  }
+</style>
+<script data-goatcounter="https://adaliaadvisors.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">
+    <a href="/" aria-label="Adalia Advisors — home">
+      <img src="/img/logo-a.png" alt="Adalia Advisors">
+    </a>
+  </div>
+  <input type="checkbox" id="nav-toggle">
+  <label for="nav-toggle" aria-label="Toggle navigation">
+    <div class="nav-hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </label>
+  <ul class="nav-links">
+    <li><a href="/how-we-think">How We Think</a></li>
+    <li><a href="/how-we-help">How We Help</a></li>
+    <li><a href="/traction">Getting &amp; Maintaining Traction</a></li>
+    <li><a href="/advisory-teams">Advisory Teams</a></li>
+    <li><a href="/trey-miller">Trey Miller</a></li>
+    <li><a href="/#contact" class="nav-cta">Let's Talk</a></li>
+  </ul>
+</nav>
+
+<section class="hero hero-compact">
+  <div class="hero-inner">
+    <h1>Adalia Advisors<br>Standard Terms</h1>
+    <p class="hero-lead meta">Version 0.1 — Working Draft — <mark>[DATE]</mark><br>Posted at adaliaadvisors.com/msa/<mark>[v0-1]</mark></p>
+  </div>
+</section>
+
+<section class="prose-section terms">
+  <div class="prose-inner">
+<div class="notice"><p><strong>Working draft for attorney review. Not legal advice. Bracketed items are open decisions or flags for counsel.</strong></p></div>
+<p><strong>How these terms apply.</strong> These Standard Terms govern every engagement between <mark>[Adalia Advisors, LLC]</mark> ("Consultant," "we") and a client ("Client," "you"). Each Engagement Letter identifies these terms by version number and effective date, and that version governs the engagement for its duration. Signing the Engagement Letter accepts these terms. No separate signature on this document is required.</p>
+<p><em>(For clients whose procurement process requires a countersigned master agreement, the same text is available as a signature-ready Master Services Agreement. See the cover sheet at the end.)</em></p>
+<div class="toc" role="navigation" aria-label="Contents">
+<span class="toc-label">Contents</span>
+<ol>
+  <li><a href="#s1"><span class="num">1.</span> Structure</a></li>
+  <li><a href="#s2"><span class="num">2.</span> The Services</a></li>
+  <li><a href="#s3"><span class="num">3.</span> Fees, Expenses, and Payment</a></li>
+  <li><a href="#s4"><span class="num">4.</span> Term and Termination</a></li>
+  <li><a href="#s5"><span class="num">5.</span> Confidentiality</a></li>
+  <li><a href="#s6"><span class="num">6.</span> Intellectual Property</a></li>
+  <li><a href="#s7"><span class="num">7.</span> Artificial Intelligence; Recording and Transcription</a></li>
+  <li><a href="#s8"><span class="num">8.</span> Records and Retention</a></li>
+  <li><a href="#s9"><span class="num">9.</span> Warranties and Disclaimers</a></li>
+  <li><a href="#s10"><span class="num">10.</span> Limitation of Liability</a></li>
+  <li><a href="#s11"><span class="num">11.</span> Indemnification</a></li>
+  <li><a href="#s12"><span class="num">12.</span> Insurance, Publicity, Disputes, and General</a></li>
+  <li><a href="#cover-sheet"><span class="num"></span> Appendix — MSA Cover Sheet</a></li>
+  <li><a href="#open-items-and-attorney-flags"><span class="num"></span> Open Items and Attorney Flags</a></li>
+</ol>
+</div>
+<section class="terms-section" id="s1">
+<h2><span class="num">1.</span> Structure</h2>
+<p class="clause" id="s1-1"><strong><span class="num">1.1</span> Engagement Letters.</strong> These terms cover the legal relationship. Each engagement is described in a separate Engagement Letter setting out scope, deliverables, schedule, and fees. Engagement Letters are written in plain language for readability; that drafting choice does not narrow or alter these terms. "Engagement Letter" is the only term used for such a document.</p>
+<p class="clause" id="s1-2"><strong><span class="num">1.2</span> Order of precedence.</strong> In a conflict, the Engagement Letter controls as to scope, deliverables, schedule, and fees. These Standard Terms control on everything else. General or descriptive language in an Engagement Letter does not create a warranty or obligation beyond these terms.</p>
+<p class="clause" id="s1-3"><strong><span class="num">1.3</span> Modifying these terms.</strong> An Engagement Letter modifies a term here only if it expressly names the section being modified and states the modification. A general statement that Client's policies, purchase order terms, or vendor requirements apply does not modify these terms.</p>
+<p class="clause" id="s1-4"><strong><span class="num">1.4</span> Changes to an engagement.</strong> Either party may request a change to scope, deliverables, schedule, or assumptions. A change takes effect when both parties confirm it in writing, including by email. Where a change materially increases the effort required, Consultant will state the effect on fees and schedule before performing the changed work.</p>
+<p class="clause" id="s1-5"><strong><span class="num">1.5</span> New versions.</strong> Consultant maintains the current version at adaliaadvisors.com/msa, with prior versions archived at their own addresses. A new version applies only to Engagement Letters executed on or after its effective date, and never to an engagement already underway. Consultant will give at least thirty (30) days' actual notice of a material change before it applies to any new Engagement Letter with Client. If Client does not accept a new version, Client may decline further Engagement Letters, and any engagement then underway continues under the version named in its Engagement Letter.</p>
+<p class="clause" id="s1-6"><strong><span class="num">1.6</span> Definitions.</strong> "<strong>Background IP</strong>" means Consultant's methodologies, frameworks, models, templates, tools, run sheets, and know-how, whenever developed. "<strong>Client Materials</strong>" means information and documents Client provides. "<strong>Deliverable</strong>" means a written work product Consultant delivers under an Engagement Letter. "<strong>Services</strong>" means the consulting, advisory, and facilitation work performed under an Engagement Letter. "<strong>Session</strong>" means a meeting, call, workshop, or working session, in person or remote.</p>
+</section>
+<section class="terms-section" id="s2">
+<h2><span class="num">2.</span> The Services</h2>
+<p class="clause" id="s2-1"><strong><span class="num">2.1</span> Standard of performance.</strong> Consultant will perform the Services in a professional and workmanlike manner consistent with generally accepted practices for consulting services of a similar type. This is the sole standard of performance.</p>
+<p class="clause" id="s2-2"><strong><span class="num">2.2</span> Advisory services only.</strong> Consultant provides strategic, operational, and organizational advisory services. Consultant does not provide, and no Deliverable or Session constitutes, legal, tax, accounting, audit, investment, securities, insurance, or business brokerage advice or services. Consultant is not a licensed attorney, certified public accountant, investment adviser, broker-dealer, or business broker. Client is responsible for engaging licensed professionals in these disciplines and for obtaining independent professional advice before acting on any Deliverable. Where a Deliverable addresses valuation, transaction readiness, exit planning, or accounting treatment, it is provided for Client's internal planning purposes only, and is not a valuation opinion, fairness opinion, audit, review, compilation, or attestation.</p>
+<p class="clause" id="s2-3"><strong><span class="num">2.3</span> No guaranteed outcomes.</strong> Consultant does not guarantee any business, financial, transactional, or operational outcome. Client is solely responsible for its own decisions, for implementing or declining to implement any recommendation, and for the results.</p>
+<p class="clause" id="s2-4"><strong><span class="num">2.4</span> No fiduciary relationship.</strong> These terms create no fiduciary, agency, partnership, joint venture, or employment relationship. Consultant's duties are only those expressly stated here and in the Engagement Letter.</p>
+<p class="clause" id="s2-5"><strong><span class="num">2.5</span> Client responsibilities.</strong> Client will provide complete and accurate information reasonably requested, provide timely access to personnel and records, ensure that decision-makers identified in the Engagement Letter attend scheduled Sessions, designate a single point of contact authorized to give direction and approve changes, and obtain any consents required for Consultant to receive or use Client Materials. Delays or added effort caused by a failure to meet these responsibilities are addressed under <a class="xref" href="#s1-4">§ 1.4</a>.</p>
+<p class="clause" id="s2-6"><strong><span class="num">2.6</span> Reliance on Client information.</strong> Deliverables are based on information provided by Client and on publicly available information. Consultant does not audit, verify, or independently confirm that information, and is not responsible for a Deliverable that is inaccurate or incomplete because the information provided was inaccurate or incomplete.</p>
+<p class="clause" id="s2-7"><strong><span class="num">2.7</span> Cancellation and rescheduling.</strong> Sessions reserve Consultant's capacity. If Client cancels or reschedules a Session on fewer than <mark>[ten (10)]</mark> business days' notice, Client remains responsible for <mark>[fifty percent (50%)]</mark> of the applicable Session or day-rate fee; on fewer than <mark>[three (3)]</mark> business days' notice, <mark>[one hundred percent (100%)]</mark>. In either case Client remains responsible for travel costs Consultant cannot recover. This section applies independently of <a class="xref" href="#s4">§ 4</a> (Termination).</p>
+</section>
+<section class="terms-section" id="s3">
+<h2><span class="num">3.</span> Fees, Expenses, and Payment</h2>
+<p class="clause" id="s3-1"><strong><span class="num">3.1</span> Fee structures.</strong> Each Engagement Letter states the applicable structure, which may include a monthly retainer, day and half-day rates, per-Session facilitation rates, fixed project fees, milestone fees, or a combination. Work outside the scope of an Engagement Letter is addressed under <a class="xref" href="#s1-4">§ 1.4</a>.</p>
+<p class="clause" id="s3-2"><strong><span class="num">3.2</span> Retainer.</strong> A monthly retainer is a fee for reserved capacity and for the recurring services identified in the Engagement Letter. It is earned upon receipt, is not refundable, is not a deposit, and is not a prepayment against day-rate work unless the Engagement Letter expressly says so. Capacity not used in a month does not carry forward.</p>
+<p class="clause" id="s3-3"><strong><span class="num">3.3</span> Day and half-day rates.</strong> A "day" means up to <mark>[eight (8)]</mark> hours of engaged time and a "half-day" up to <mark>[four (4)]</mark> hours, in each case exclusive of travel. Time beyond a scheduled day or half-day is billed in <mark>[half-day]</mark> increments.</p>
+<p class="clause" id="s3-4"><strong><span class="num">3.4</span> Travel costs.</strong> Client is responsible for Consultant's actual travel costs, including airfare, lodging, ground transportation, vehicle rental, mileage at the then-current IRS standard rate, parking, tolls, baggage fees, meals, and incidentals. Consultant will state travel costs as itemized line items on the invoice. <strong>Consultant is not required to submit receipts or supporting documentation with an invoice</strong>; Consultant retains its own records. Travel costs are billed at cost without markup, and Consultant will book at reasonable, non-premium rates. Where a trip serves more than one Consultant client, costs are allocated among those clients on a reasonable basis and Client is billed only its allocated share. Travel costs incurred and not recoverable remain payable notwithstanding cancellation, rescheduling, or termination.</p>
+<p class="clause" id="s3-5"><strong><span class="num">3.5</span> Travel time fee.</strong> In addition to travel costs, Client is responsible for a travel time fee of <strong><mark>[$1,000]</mark> per round trip</strong> originating from Consultant's principal place of business in <mark>[Greensboro, North Carolina]</mark>. This is a fee for services, not a reimbursement of expenses. It applies once per round trip, not per day, and is allocated among multiple clients on the same basis as <a class="xref" href="#s3-4">§ 3.4</a>. For travel exceeding <mark>[six (6)]</mark> hours in transit each way, or international travel, Consultant will quote the fee separately in advance. A day consisting solely of travel <mark>[does not]</mark> consume a day-rate.</p>
+<p class="clause" id="s3-6"><strong><span class="num">3.6</span> Invoicing and payment.</strong> Work performed on a day-rate, Session, hourly, or milestone basis is invoiced during the first week of the following month. Monthly retainers are invoiced on the fifteenth (15th) of the month preceding the month to which they apply. <strong>All invoices are due net fifteen (15) days.</strong> Client's purchase order, vendor portal, or internal approval requirements do not extend the payment terms.</p>
+<p class="clause" id="s3-7"><strong><span class="num">3.7</span> Disputed invoices.</strong> Client must notify Consultant in writing of a disputed amount, with reasonable detail, within <mark>[ten (10)]</mark> days of the invoice date. Undisputed amounts remain due on the original terms. An amount not disputed within that period is deemed accepted.</p>
+<p class="clause" id="s3-8"><strong><span class="num">3.8</span> Late charges.</strong> Undisputed amounts not paid when due accrue a late charge of <mark>[1.5%]</mark> per month, or the maximum rate permitted by law, whichever is less. <span class="flag">[Attorney flag: confirm treatment under North Carolina law.]</span></p>
+<p class="clause" id="s3-9"><strong><span class="num">3.9</span> Suspension.</strong> If an undisputed amount remains unpaid <mark>[ten (10)]</mark> days after written notice, Consultant may suspend performance, including cancelling scheduled Sessions, until payment is received. Consultant is not liable for any delay or consequence of a suspension. On resumption, Consultant will reschedule as its availability reasonably permits and the schedule is extended accordingly. Client remains responsible for unrecoverable travel costs incurred for a suspended Session.</p>
+<p class="clause" id="s3-10"><strong><span class="num">3.10</span> Collection costs.</strong> Client is responsible for Consultant's reasonable costs of collecting past-due amounts, including reasonable attorneys' fees, to the extent permitted by law. <span class="flag">[Attorney flag: must be drafted to N.C. Gen. Stat. § 6-21.2 — notice, cure, and cap requirements. Borrowed language will not work.]</span></p>
+<p class="clause" id="s3-11"><strong><span class="num">3.11</span> Taxes.</strong> Fees are exclusive of sales, use, value-added, gross receipts, and similar taxes, which are Client's responsibility other than taxes on Consultant's net income.</p>
+<p class="clause" id="s3-12"><strong><span class="num">3.12</span> Rate changes.</strong> Consultant may change rates for engagements beginning after the change. For a retainer or recurring engagement, Consultant may change rates on <mark>[sixty (60)]</mark> days' written notice, effective no earlier than <mark>[twelve (12)]</mark> months after the start of the engagement or the last change, whichever is later. If Client does not accept, Client may terminate the affected engagement under <a class="xref" href="#s4-1">§ 4.1</a> without further obligation beyond amounts then due.</p>
+</section>
+<section class="terms-section" id="s4">
+<h2><span class="num">4.</span> Term and Termination</h2>
+<p class="clause" id="s4-1"><strong><span class="num">4.1</span> Termination for convenience.</strong> Either party may terminate an Engagement Letter, or the relationship, for convenience on written notice. Notice is effective on actual receipt.</p>
+<p class="clause" id="s4-2"><strong><span class="num">4.2</span> Effective date; retainer cutoff.</strong> For an engagement including a monthly retainer, termination is effective on the last day of the month in which notice is received, and:</p>
+<div class="indent"><p>(a) notice received <strong>on or before the 14th</strong> of a month: no retainer is due for the following month;</p><p>(b) notice received <strong>on or after the 15th</strong>: the retainer for the following month is due and payable, and the engagement continues through the end of that month.</p></div>
+<p>If the 14th falls on a Saturday, Sunday, or federal holiday, notice received the next business day is treated as received on the 14th.</p>
+<p class="clause" id="s4-3"><strong><span class="num">4.3</span> Payment on termination.</strong> Client will pay: (a) all fees for Services performed through the effective date; (b) all fees for Sessions and work scheduled as of the date notice is received and falling within <mark>[thirty (30) days / the notice period]</mark>, whether or not performed; (c) any retainer due under <a class="xref" href="#s4-2">§ 4.2</a>(b); and (d) all travel costs incurred and not recoverable. <strong>Travel time fees under <a class="xref" href="#s3-5">§ 3.5</a> are not payable for travel not undertaken.</strong> "Scheduled" means placed on the calendar by agreement before notice was received.</p>
+<p class="clause" id="s4-4"><strong><span class="num">4.4</span> Termination for cause.</strong> Either party may terminate for material breach if the breaching party fails to cure within <mark>[fifteen (15)]</mark> days after written notice describing the breach. Failure to pay an undisputed amount within <mark>[fifteen (15)]</mark> days after written notice of non-payment is a material breach requiring no further cure notice. Consultant may also terminate immediately if continued performance would, in its reasonable professional judgment, require acting inconsistently with law or professional standards.</p>
+<p class="clause" id="s4-5"><strong><span class="num">4.5</span> Insolvency; change of control.</strong> Either party may terminate immediately on insolvency, assignment for the benefit of creditors, or a bankruptcy or receivership proceeding not dismissed within <mark>[sixty (60)]</mark> days. Either party may terminate an Engagement Letter on <mark>[thirty (30)]</mark> days' notice following a change of control of the other. <span class="flag">[Open: treatment of a Client transaction closing mid-engagement — assignment to buyer, or termination.]</span></p>
+<p class="clause" id="s4-6"><strong><span class="num">4.6</span> Wind-down.</strong> Consultant will deliver Deliverables completed as of the effective date and, on request, work in progress in its then-existing form. Consultant has no obligation to complete, finalize, or explain work in progress. Transition assistance beyond delivery of existing materials is billable at then-current rates.</p>
+<p class="clause" id="s4-7"><strong><span class="num">4.7</span> Survival.</strong> Sections 1.2, 1.6, 2.2, 2.3, 2.4, 2.6, 3 (as to accrued amounts), 4.3, 4.6, 4.7, 5, 6, 7, 8, 9, 10, 11, and 12 survive termination.</p>
+</section>
+<section class="terms-section" id="s5">
+<h2><span class="num">5.</span> Confidentiality</h2>
+<p class="clause" id="s5-1"><strong><span class="num">5.1</span> Definition.</strong> "Confidential Information" means non-public information disclosed by one party to the other that is identified as confidential or that a reasonable person would understand to be confidential given its nature and the circumstances. Client's includes financial information, customer and vendor information, pricing, compensation data, business plans, and operating metrics. Consultant's includes Background IP, methodologies, pricing, and unpublished materials. The terms of each Engagement Letter are confidential to both parties.</p>
+<p class="clause" id="s5-2"><strong><span class="num">5.2</span> Obligations.</strong> The receiving party will use the other's Confidential Information only to perform or receive the Services; protect it with at least the care it uses for its own confidential information of like importance, and never less than reasonable care; and disclose it only to personnel, subcontractors, and professional advisers with a need to know who are bound by obligations at least as protective. The receiving party is responsible for their compliance.</p>
+<p class="clause" id="s5-3"><strong><span class="num">5.3</span> Exclusions.</strong> Information that is or becomes public through no fault of the receiving party; that the receiving party lawfully knew without a duty of confidentiality before disclosure; that it lawfully receives from a third party without such a duty; or that it independently develops without use of the other's Confidential Information.</p>
+<p class="clause" id="s5-4"><strong><span class="num">5.4</span> Compelled disclosure.</strong> Disclosure required by law, regulation, or valid legal process is permitted, with prompt notice where legally allowed and reasonable cooperation, at the disclosing party's expense, in any effort to limit or protect the disclosure.</p>
+<p class="clause" id="s5-5"><strong><span class="num">5.5</span> Duration.</strong> These obligations continue for <mark>[three (3) / five (5)]</mark> years after termination of the applicable Engagement Letter, and for information constituting a trade secret, for so long as it remains one.</p>
+<p class="clause" id="s5-6"><strong><span class="num">5.6</span> Return or destruction.</strong> On written request following termination, the receiving party will return or destroy the other's Confidential Information, subject to <a class="xref" href="#s5-8">§ 5.8</a> and <a class="xref" href="#s8">§ 8</a>.</p>
+<p class="clause" id="s5-7"><strong><span class="num">5.7</span> Residuals.</strong> Each party may use the general knowledge, skills, and experience of its personnel, <strong>retained in unaided memory</strong>, in the ordinary course of business. "Unaided memory" means retained without reference to any written, recorded, or stored material. This does not permit use or disclosure of the other's Confidential Information and grants no license under the other's intellectual property.</p>
+<p class="clause" id="s5-8"><strong><span class="num">5.8</span> Retention of working papers.</strong> Notwithstanding <a class="xref" href="#s5-6">§ 5.6</a>, Consultant may retain its own notes, working papers, models, and engagement files, including Client Materials to the extent incorporated into them, for the periods in <a class="xref" href="#s8-2">§ 8.2</a>. Retained materials remain subject to this section for as long as Consultant holds them, without regard to <a class="xref" href="#s5-5">§ 5.5</a>. Consultant may use them only for internal professional recordkeeping, continuity of service, compliance, and the defense or prosecution of claims.</p>
+<p class="clause" id="s5-9"><strong><span class="num">5.9</span> Concurrent clients.</strong> Consultant serves multiple clients, including clients that compete with Client. Nothing here restricts Consultant from serving any other client. Consultant has no obligation to disclose to Client the identity of, or any information concerning, any other client, and none to disclose Client's information to any other client.</p>
+</section>
+<section class="terms-section" id="s6">
+<h2><span class="num">6.</span> Intellectual Property</h2>
+<p class="clause" id="s6-1"><strong><span class="num">6.1</span> Background IP.</strong> Consultant retains all right, title, and interest in its Background IP. No Engagement Letter transfers or assigns it, and no Deliverable containing it conveys any interest beyond the license in <a class="xref" href="#s6-3">§ 6.3</a>. Consultant remains free to use its Background IP, and improvements developed during an engagement, for any purpose.</p>
+<p class="clause" id="s6-2"><strong><span class="num">6.2</span> Client Materials.</strong> Client retains all right, title, and interest in Client Materials, and grants Consultant a non-exclusive license to use them as necessary to perform the Services and as permitted under <a class="xref" href="#s5-8">§ 5.8</a>, <a class="xref" href="#s6-5">§ 6.5</a>, and <a class="xref" href="#s8">§ 8</a>.</p>
+<p class="clause" id="s6-3"><strong><span class="num">6.3</span> Deliverables; license.</strong> Subject to payment in full for the engagement, Consultant grants Client a perpetual, non-exclusive, non-transferable, royalty-free license to use, copy, and modify the Deliverables for Client's internal business purposes. This does not permit Client to sell, license, publish, or distribute the Deliverables outside its organization, or to use them to provide services to third parties, without Consultant's written consent. Consultant retains ownership of the Deliverables and of all Background IP embodied in them, and remains free to develop similar work for other clients.</p>
+<p class="clause" id="s6-4"><strong><span class="num">6.4</span> Third-party materials.</strong> Some Deliverables incorporate frameworks or instruments Consultant licenses from third parties. The grant in <a class="xref" href="#s6-3">§ 6.3</a> as to those materials is limited to the rights Consultant holds and is subject to the licensor's terms, which Consultant will identify on request.</p>
+<p class="clause" id="s6-5"><strong><span class="num">6.5</span> Aggregated and anonymized data.</strong> Consultant may compile aggregated and anonymized data derived from its engagements and use it to develop benchmarks, research, methodologies, and published material, provided it does not identify Client, is not attributable to Client, and does not disclose Client's Confidential Information.</p>
+</section>
+<section class="terms-section" id="s7">
+<h2><span class="num">7.</span> Artificial Intelligence; Recording and Transcription</h2>
+<p class="clause" id="s7-1"><strong><span class="num">7.1</span> AI-assisted work is the default.</strong> Consultant uses artificial intelligence tools as a routine and ordinary part of its practice. Client should assume that AI tools assist in research, analysis, modeling, drafting, summarization, and preparation of Deliverables, and that Consultant's personnel and subcontractors use such tools in the same way. No separate notice or consent is required for any particular use.</p>
+<p class="clause" id="s7-2"><strong><span class="num">7.2</span> Human authorship and accountability.</strong> A named individual at Consultant governs and answers for every word delivered to Client. Consultant reviews, verifies, edits, and adopts each Deliverable as its own work product before delivery. Consultant's duties, warranties, and liability are identical whether or not AI tools were used, and Consultant will not raise the involvement of an AI tool as a defense to, or in mitigation of, any claim.</p>
+<p class="clause" id="s7-3"><strong><span class="num">7.3</span> No process disclosure.</strong> Consultant evaluates its work on quality alone. Consultant is not obligated to identify which tools, models, or methods were used in producing any particular Deliverable, or to mark, label, or apportion any portion of a Deliverable by method of production. On written request, Consultant will describe the categories of tools in general use and its data-handling practices under <a class="xref" href="#s7-4">§ 7.4</a>.</p>
+<p class="clause" id="s7-4"><strong><span class="num">7.4</span> Confidential Information in AI tools.</strong> Consultant will use AI tools under terms that do not permit the provider to train models on Client's Confidential Information, and will disable training and history retention where the provider offers that control. Consultant will not input Client credentials, personal information of Client's employees or customers beyond business contact information, protected health information, payment card data, or <mark>[other excluded categories]</mark> into any AI tool without Client's prior written consent. Section 5 applies in full to information provided to any AI tool.</p>
+<p class="clause" id="s7-5"><strong><span class="num">7.5</span> If Client requires otherwise.</strong> If Client requires that AI tools not be used on an engagement, that requirement must be stated in the Engagement Letter. Consultant may decline the engagement, or accept it with adjusted scope, timeline, and fees. A general restriction in Client's vendor, procurement, or IT policy does not modify this section unless expressly incorporated under <a class="xref" href="#s1-3">§ 1.3</a>.</p>
+<p class="clause" id="s7-6"><strong><span class="num">7.6</span> Intellectual property scope.</strong> Consultant warrants human authorship sufficient to grant the license in <a class="xref" href="#s6-3">§ 6.3</a>. Consultant makes no representation as to the copyrightability of any individual element of a Deliverable, and its warranty and indemnity against third-party infringement claims do not extend to claims arising from the training data or model outputs of a third-party AI provider.</p>
+<p class="clause" id="s7-7"><strong><span class="num">7.7</span> Recording and transcription.</strong> Consultant records and transcribes Sessions as a routine practice, and may use automated notetaking tools that join a Session as a participant. Consultant will disclose that a Session is being recorded at or before its start. Any participant may ask that recording be paused or stopped, and Consultant will comply. Client is responsible for informing its own personnel, and any third party it invites, that Sessions may be recorded and transcribed.</p>
+<p class="clause" id="s7-8"><strong><span class="num">7.8</span> Ownership and handling of recordings.</strong> Recordings and transcripts are Consultant's working papers. Any Client Confidential Information they contain remains Client's Confidential Information and is subject to <a class="xref" href="#s5">§ 5</a>. Consultant retains them under <a class="xref" href="#s8-2">§ 8.2</a> and may use them to prepare notes, summaries, and Deliverables. <mark>[Consultant will provide Client a copy of any recording or transcript of a Session Client attended, on written request made within thirty (30) days of the Session.]</mark></p>
+<p class="clause" id="s7-9"><strong><span class="num">7.9</span> Sessions not recorded.</strong> Consultant's fee estimates, schedules, and Deliverable specifications assume the recording and transcription described in <a class="xref" href="#s7-7">§ 7.7</a>. Where Client or a participant declines recording, Consultant will work from contemporaneous notes. Client should expect that Deliverables drawn from unrecorded Sessions may carry less detail and fewer direct attributions, and that Consultant may request follow-up Sessions, written confirmation of decisions reached, or additional preparation time. Consultant's notes are its record of an unrecorded Session, and Consultant does not warrant that any summary of such a Session is complete or verbatim. Where declining recording materially increases the effort required, Consultant will notify Client before incurring the additional effort, and the parties will address fees and schedule under <a class="xref" href="#s1-4">§ 1.4</a>.</p>
+</section>
+<section class="terms-section" id="s8">
+<h2><span class="num">8.</span> Records and Retention</h2>
+<p class="clause" id="s8-1"><strong><span class="num">8.1</span> Archival copy.</strong> Notwithstanding <a class="xref" href="#s5-6">§ 5.6</a>, Consultant may retain one archival copy of its engagement files, working papers, notes, models, recordings, transcripts, and Deliverables, together with Client Materials to the extent incorporated into them, for professional recordkeeping, compliance, and the defense or prosecution of claims. Retained materials remain subject to <a class="xref" href="#s5">§ 5</a>.</p>
+<p class="clause" id="s8-2"><strong><span class="num">8.2</span> Retention schedule.</strong> Measured from completion or termination of the engagement unless otherwise stated:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Category</th><th>Retention</th></tr></thead>
+<tbody>
+<tr><td>Engagement files, working papers, models, Deliverables</td><td>7 years</td></tr>
+<tr><td>Financial, billing, and tax records</td><td>7 years</td></tr>
+<tr><td>Raw audio and video recordings of Sessions</td><td>12 months, or 30 days after a transcript is produced, whichever is earlier</td></tr>
+<tr><td>Transcripts and derived notes and summaries</td><td>3 years</td></tr>
+<tr><td>Client Materials not incorporated into working papers</td><td>Returned or deleted on written request, subject to <a class="xref" href="#s8-1">§ 8.1</a></td></tr>
+</tbody></table></div>
+<p>Consultant may update this schedule under <a class="xref" href="#s1-5">§ 1.5</a>.</p>
+<p class="clause" id="s8-3"><strong><span class="num">8.3</span> Backups; litigation hold.</strong> Materials in routine backup, archival, or disaster-recovery systems are not subject to targeted deletion and will be deleted in the ordinary course of those systems' cycles. Any retention or deletion obligation is suspended as to materials subject to a litigation hold, legal process, or regulatory obligation.</p>
+<p class="clause" id="s8-4"><strong><span class="num">8.4</span> Data handling.</strong> Consultant will maintain administrative, technical, and physical safeguards appropriate to the information it holds and consistent with the practices of a professional services firm of similar size, and will notify Client without undue delay after confirming a security incident affecting Client's Confidential Information. <span class="flag">[Open: whether to state a notification deadline.]</span></p>
+</section>
+<section class="terms-section" id="s9">
+<h2><span class="num">9.</span> Warranties and Disclaimers</h2>
+<p class="clause" id="s9-1"><strong><span class="num">9.1</span> Mutual.</strong> Each party has the authority to enter into this relationship, and doing so conflicts with no other agreement binding on it.</p>
+<p class="clause" id="s9-2"><strong><span class="num">9.2</span> Consultant.</strong> Consultant will perform in accordance with <a class="xref" href="#s2-1">§ 2.1</a> and has the right to grant the license in <a class="xref" href="#s6-3">§ 6.3</a>.</p>
+<p class="clause" id="s9-3"><strong><span class="num">9.3</span> Client.</strong> Client has the right to provide Client Materials for the purposes of the engagement, and doing so violates no law or third-party right.</p>
+<p class="clause" id="s9-4"><strong><span class="num">9.4</span> Disclaimer.</strong> EXCEPT AS EXPRESSLY STATED, CONSULTANT DISCLAIMS ALL WARRANTIES, EXPRESS, IMPLIED, AND STATUTORY, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, AND NON-INFRINGEMENT. CONSULTANT DOES NOT WARRANT THAT ANY DELIVERABLE WILL ACHIEVE ANY PARTICULAR RESULT.</p>
+<p class="clause" id="s9-5"><strong><span class="num">9.5</span> Claims period.</strong> Neither party may bring a claim arising out of or relating to an engagement more than <mark>[twelve (12) / eighteen (18)]</mark> months after the claim accrued. <span class="flag">[Attorney flag: confirm enforceability in North Carolina.]</span></p>
+</section>
+<section class="terms-section" id="s10">
+<h2><span class="num">10.</span> Limitation of Liability</h2>
+<p class="clause" id="s10-1"><strong><span class="num">10.1</span> Indirect damages.</strong> NEITHER PARTY IS LIABLE FOR INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR LOST PROFITS, LOST REVENUE, LOST BUSINESS OPPORTUNITY, LOST OR DIMINISHED ENTERPRISE VALUE, LOSS OF ANTICIPATED SAVINGS, LOSS OF GOODWILL, OR BUSINESS INTERRUPTION, REGARDLESS OF THE THEORY OF LIABILITY AND EVEN IF ADVISED OF THE POSSIBILITY.</p>
+<p class="clause" id="s10-2"><strong><span class="num">10.2</span> General cap.</strong> EXCEPT AS PROVIDED IN <a class="xref" href="#s10-3">§ 10.3</a> AND <a class="xref" href="#s10-4">§ 10.4</a>, EACH PARTY'S TOTAL AGGREGATE LIABILITY FOR ALL CLAIMS ARISING OUT OF OR RELATING TO AN ENGAGEMENT, WHETHER IN CONTRACT, TORT, NEGLIGENCE, STRICT LIABILITY, STATUTE, OR ANY OTHER THEORY, WILL NOT EXCEED THE TOTAL FEES PAID AND PAYABLE UNDER THAT ENGAGEMENT LETTER.</p>
+<p class="clause" id="s10-3"><strong><span class="num">10.3</span> Super-caps.</strong> The following are excluded from <a class="xref" href="#s10-2">§ 10.2</a> and subject instead to these aggregate limits, each applying in the aggregate for all claims in the category:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Category</th><th>Aggregate limit</th></tr></thead>
+<tbody>
+<tr><td>Breach of <a class="xref" href="#s5">§ 5</a>, or unauthorized access to or disclosure of Confidential Information</td><td>$1,000,000</td></tr>
+<tr><td>Indemnification for third-party IP infringement under <a class="xref" href="#s11-1">§ 11.1</a></td><td>$1,000,000</td></tr>
+<tr><td>Bodily injury, death, or damage to tangible property caused by negligence</td><td>$1,000,000</td></tr>
+</tbody></table></div>
+<p class="clause" id="s10-4"><strong><span class="num">10.4</span> Exclusions from all limits.</strong> The limits do not apply to a party's gross negligence, willful misconduct, or fraud, or to Client's obligation to pay amounts due under <a class="xref" href="#s3">§ 3</a> and <a class="xref" href="#s4-3">§ 4.3</a>.</p>
+<p class="clause" id="s10-5"><strong><span class="num">10.5</span> Allocation of risk.</strong> These limitations reflect an agreed allocation of risk, are a material inducement to the engagement, are reflected in the fees, and apply notwithstanding the failure of the essential purpose of any limited remedy.</p>
+</section>
+<section class="terms-section" id="s11">
+<h2><span class="num">11.</span> Indemnification</h2>
+<p class="clause" id="s11-1"><strong><span class="num">11.1</span> By Consultant.</strong> Consultant will defend Client against any third-party claim that a Deliverable, as delivered and used as permitted under <a class="xref" href="#s6-3">§ 6.3</a>, infringes that party's United States copyright, trademark, or trade secret rights, and will indemnify against damages finally awarded or paid in settlement. This does not apply to claims arising from Client Materials, modification by anyone other than Consultant, use outside the license in <a class="xref" href="#s6-3">§ 6.3</a>, combination with materials not supplied by Consultant, or matters excluded under <a class="xref" href="#s7-6">§ 7.6</a>.</p>
+<p class="clause" id="s11-2"><strong><span class="num">11.2</span> By Client.</strong> Client will defend Consultant against any third-party claim arising from Client Materials, from use of a Deliverable outside the license in <a class="xref" href="#s6-3">§ 6.3</a>, or from Client's decisions and actions in implementing or declining to implement a recommendation, and will indemnify against damages finally awarded or paid in settlement.</p>
+<p class="clause" id="s11-3"><strong><span class="num">11.3</span> Procedure.</strong> Prompt written notice; the indemnifying party controls defense and settlement; reasonable cooperation at the indemnifying party's expense. No settlement imposing a non-monetary obligation or admission on the indemnified party without its consent. Late notice relieves the indemnifying party only to the extent it is prejudiced.</p>
+</section>
+<section class="terms-section" id="s12">
+<h2><span class="num">12.</span> Insurance, Publicity, Disputes, and General</h2>
+<p class="clause" id="s12-1"><strong><span class="num">12.1</span> Insurance.</strong> During each engagement Consultant maintains professional liability (errors and omissions) of $1,000,000 per claim and $1,000,000 aggregate; commercial general liability of $1,000,000 per occurrence and $2,000,000 aggregate; and cyber liability and privacy coverage of $1,000,000 aggregate. Certificates are available on request. Consultant will name Client as an additional insured on its general liability policy on request; professional liability and cyber coverage are written on a claims-made basis and do not permit additional insureds. Consultant will maintain professional liability and cyber coverage, or an extended reporting period endorsement, for <mark>[two (2) / three (3)]</mark> years after completion of an engagement. Maintenance of insurance does not expand Consultant's liability beyond <a class="xref" href="#s10">§ 10</a>, which applies without regard to available proceeds.</p>
+<p class="clause" id="s12-2"><strong><span class="num">12.2</span> Publicity.</strong> Consultant may identify Client as a client and use Client's name and logo for that purpose on its website, in capability and marketing materials, and in proposals, and may describe the Services in general terms without disclosing Confidential Information. A case study, testimonial, or quoted statement requires Client's prior written approval, not to be unreasonably withheld, deemed given if Client does not respond within <mark>[fifteen (15)]</mark> business days of a written request including the proposed material. Reference calls require Client's consent. Approval once given is not revocable as to materials already published. On termination, Consultant may continue existing uses but will not initiate new ones without consent. Client may use Consultant's name and marks only to identify Consultant in connection with the Services.</p>
+<p class="clause" id="s12-3"><strong><span class="num">12.3</span> Independent contractor.</strong> Consultant is an independent contractor, responsible for its own taxes, withholding, insurance, and benefits and those of its personnel and subcontractors. Consultant has no authority to bind Client and will not hold itself out as having it. Neither party's personnel are eligible for the other's benefits.</p>
+<p class="clause" id="s12-4"><strong><span class="num">12.4</span> Non-exclusivity.</strong> The relationship is non-exclusive. Consultant may serve any other client, including Client's competitors, without restriction. Neither party is subject to any non-competition obligation, and no Engagement Letter may impose one on Consultant except by express modification under <a class="xref" href="#s1-3">§ 1.3</a>.</p>
+<p class="clause" id="s12-5"><strong><span class="num">12.5</span> Non-solicitation.</strong> During an engagement and for <mark>[twelve (12)]</mark> months after, neither party will knowingly solicit for employment any employee or contractor of the other directly involved in the engagement, without written consent. This does not restrict general advertising, job postings, untargeted recruiting searches, or hiring someone who responds to them or initiates contact independently.</p>
+<p class="clause" id="s12-6"><strong><span class="num">12.6</span> Subcontractors.</strong> Consultant may engage subcontractors and remains responsible for the Services and for their compliance with these terms, including <a class="xref" href="#s5">§ 5</a> and <a class="xref" href="#s7">§ 7</a>.</p>
+<p class="clause" id="s12-7"><strong><span class="num">12.7</span> Dispute resolution.</strong> Before initiating any proceeding, the parties will attempt direct negotiation between individuals with authority to settle for <mark>[thirty (30)]</mark> days after written notice of the dispute, and then non-binding mediation before a mutually acceptable mediator in <mark>[Guilford County, North Carolina]</mark>, sharing the mediator's fees equally.</p>
+<p class="flag-line"><span class="flag">[OPEN — SELECT ONE]</span></p>
+<div class="indent"><p><strong>Option A — Courts.</strong> Any dispute not resolved through negotiation and mediation will be brought exclusively in the state or federal courts located in <mark>[Guilford County, North Carolina]</mark>, and each party consents to personal jurisdiction there.</p><p><strong>Option B — Arbitration.</strong> Any dispute not resolved through negotiation and mediation will be finally resolved by binding arbitration administered by <mark>[the American Arbitration Association]</mark> under its Commercial Arbitration Rules, before a single arbitrator, seated in <mark>[Guilford County, North Carolina]</mark>. Judgment may be entered in any court of competent jurisdiction. The arbitration and award are confidential.</p></div>
+<p>Notwithstanding the above: Consultant may bring an action for collection of unpaid fees directly in any court of competent jurisdiction, including the magistrate division for amounts within its jurisdictional limit; and either party may seek temporary or preliminary injunctive relief in any court to protect Confidential Information or intellectual property.</p>
+<p class="clause" id="s12-8"><strong><span class="num">12.8</span> Governing law.</strong> North Carolina law governs, without regard to conflict of laws principles.</p>
+<p class="clause" id="s12-9"><strong><span class="num">12.9</span> Attorneys' fees.</strong> <span class="flag">[Open — consider limiting recovery to collection actions under <a class="xref" href="#s3-10">§ 3.10</a> rather than mutual prevailing-party fee-shifting.]</span></p>
+<p class="clause" id="s12-10"><strong><span class="num">12.10</span> Notices.</strong> Notices must be in writing and are effective on actual receipt, by email to the addresses in the Engagement Letter or by personal delivery or overnight courier. Routine operational communications may be by email without formality.</p>
+<p class="clause" id="s12-11"><strong><span class="num">12.11</span> Assignment.</strong> Neither party may assign without the other's written consent, except to a successor in a merger, reorganization, or sale of substantially all assets, on written notice. Any other purported assignment is void.</p>
+<p class="clause" id="s12-12"><strong><span class="num">12.12</span> Force majeure.</strong> Neither party is liable for delay or failure to perform, other than a payment obligation, caused by an event beyond its reasonable control, with prompt notice and resumption as soon as reasonably practicable.</p>
+<p class="clause" id="s12-13"><strong><span class="num">12.13</span> Severability; waiver.</strong> An unenforceable provision is modified to the minimum extent necessary or severed, and the remainder continues. Failure to enforce is not a waiver; a waiver is effective only in writing.</p>
+<p class="clause" id="s12-14"><strong><span class="num">12.14</span> Entire agreement.</strong> These terms, together with the Engagement Letters incorporating them, are the entire agreement on their subject matter and supersede prior discussions, proposals, and agreements. Preprinted or standard terms on Client's purchase order, vendor portal, or invoice-approval system have no effect.</p>
+<p class="clause" id="s12-15"><strong><span class="num">12.15</span> Contracting parties.</strong> Engagements are between the entities named in the Engagement Letter. No individual owner, officer, employee, or member of either party has personal liability.</p>
+</section>
+<section class="terms-section" id="cover-sheet">
+<h2>Appendix — MSA Cover Sheet</h2>
+<div class="notice"><p>For clients whose procurement process requires a countersigned master agreement. Attaching this cover sheet converts the Standard Terms above into a signed Master Services Agreement without changing a word of them.</p></div>
+<p class="doc-title"><strong>MASTER SERVICES AGREEMENT</strong></p>
+<p>This Master Services Agreement is entered into as of <mark>[DATE]</mark> by <strong><mark>[Adalia Advisors, LLC]</mark></strong>, a <mark>[North Carolina limited liability company]</mark> ("Consultant"), and <strong><mark>[Client legal name]</mark></strong>, a <mark>[state and entity type]</mark> ("Client").</p>
+<p>The Adalia Advisors Standard Terms, version <mark>[X.X]</mark>, effective <mark>[DATE]</mark>, are attached and incorporated in full and constitute the master terms governing all engagements between the parties. References in the Standard Terms to "these terms," "these Standard Terms," and equivalent phrases mean this Agreement. Each Engagement Letter executed by the parties is governed by this Agreement.</p>
+<p class="sig-party"><strong><mark>[Adalia Advisors, LLC]</mark></strong></p>
+<p class="sig-line"><span>By: ______________________</span><span>Name: ______________________</span><span>Title: ______________</span><span>Date: __________</span></p>
+<p class="sig-party"><strong><mark>[Client]</mark></strong></p>
+<p class="sig-line"><span>By: ______________________</span><span>Name: ______________________</span><span>Title: ______________</span><span>Date: __________</span></p>
+</section>
+<section class="terms-section" id="open-items-and-attorney-flags">
+<h2>Open Items and Attorney Flags</h2>
+<h3 id="decisions-still-open">Decisions still open</h3>
+<ol class="items">
+<li><span class="num">1.</span> Dispute forum (<a class="xref" href="#s12-7">§ 12.7</a>) — Guilford County courts or binding arbitration.</li>
+<li><span class="num">2.</span> Claims period (<a class="xref" href="#s9-5">§ 9.5</a>) — twelve or eighteen months.</li>
+<li><span class="num">3.</span> Attorneys' fees (<a class="xref" href="#s12-9">§ 12.9</a>) — mutual prevailing-party, or collections only.</li>
+<li><span class="num">4.</span> Day and half-day hours and overrun increment (<a class="xref" href="#s3-3">§ 3.3</a>).</li>
+<li><span class="num">5.</span> Whether a pure travel day consumes a day-rate (<a class="xref" href="#s3-5">§ 3.5</a>).</li>
+<li><span class="num">6.</span> Cancellation windows and percentages (<a class="xref" href="#s2-7">§ 2.7</a>).</li>
+<li><span class="num">7.</span> Confidentiality duration (<a class="xref" href="#s5-5">§ 5.5</a>) — three or five years.</li>
+<li><span class="num">8.</span> Window defining "scheduled work" payable on termination (<a class="xref" href="#s4-3">§ 4.3</a>(b)).</li>
+<li><span class="num">9.</span> Client transaction closing mid-engagement (<a class="xref" href="#s4-5">§ 4.5</a>) — assignment or termination.</li>
+<li><span class="num">10.</span> Additional categories excluded from AI tools (<a class="xref" href="#s7-4">§ 7.4</a>).</li>
+<li><span class="num">11.</span> Client's right to copies of recordings and transcripts (<a class="xref" href="#s7-8">§ 7.8</a>).</li>
+<li><span class="num">12.</span> Breach notification deadline (<a class="xref" href="#s8-4">§ 8.4</a>).</li>
+<li><span class="num">13.</span> Tail coverage period (<a class="xref" href="#s12-1">§ 12.1</a>) — two or three years.</li>
+<li><span class="num">14.</span> Entity name and state throughout.</li>
+</ol>
+<h3 id="flags-for-counsel">Flags for counsel</h3>
+<ul class="items">
+<li><strong><a class="xref" href="#s3-8">§ 3.8</a></strong> — late charge rate under North Carolina law.</li>
+<li><strong><a class="xref" href="#s3-10">§ 3.10</a></strong> — collection costs must be drafted to N.C. Gen. Stat. § 6-21.2, including its notice, cure, and cap requirements. Borrowed boilerplate will not work.</li>
+<li><strong><a class="xref" href="#s9-5">§ 9.5</a></strong> — enforceability of a contractual limitations period in North Carolina.</li>
+<li><strong><a class="xref" href="#s1-5">§ 1.5</a> and <a class="xref" href="#s1-3">§ 1.3</a></strong> — the incorporation-by-reference structure. This document is accepted by signing an Engagement Letter that names it by version and date, rather than by signature on the document itself. Confirm that is sufficient for formation, and that the versioning mechanism holds.</li>
+<li><strong><a class="xref" href="#s7-7">§ 7.7</a></strong> — recording consent across states. North Carolina is one-party consent; participants in California, Pennsylvania, Illinois, Florida, Maryland, Massachusetts, or Washington may trigger all-party consent requirements. Two questions: whether announcement plus continued participation is sufficient implied consent in the strictest of those states, and whether AI speaker diarization touches Illinois BIPA or Texas CUBI.</li>
+<li><strong><a class="xref" href="#s2-2">§ 2.2</a></strong> — the advisory-only disclaimer as it relates to exit planning, transaction readiness, and business brokerage licensing in North Carolina.</li>
+<li><strong><a class="xref" href="#s5-7">§ 5.7</a> and <a class="xref" href="#s5-8">§ 5.8</a></strong> — confirm the unaided-memory residuals clause and the retention right do not conflict.</li>
+<li><strong>Jury trial waiver</strong> — deliberately omitted. North Carolina courts have been unfriendly to contractual jury trial waivers.</li>
+</ul>
+<h3 id="deliberately-not-included">Deliberately not included</h3>
+<ul class="items">
+<li>Non-competition or client-restriction obligations on Consultant (<a class="xref" href="#s12-4">§ 12.4</a> forecloses them).</li>
+<li>Unqualified return-or-destroy obligation (<a class="xref" href="#s5-8">§ 5.8</a> and <a class="xref" href="#s8-1">§ 8.1</a> preserve the archival copy).</li>
+<li>Uncapped confidentiality liability (<a class="xref" href="#s10-3">§ 10.3</a> super-cap instead).</li>
+<li>Peer group session terms — governed by separate agreements.</li>
+</ul>
+</section>
+  </div>
+</section>
+
+<footer>
+  <a href="/" class="footer-logo" aria-label="Adalia Advisors — home">
+    <img src="/img/logo-a.png" alt="Adalia Advisors">
+  </a>
+  <p>&copy; 2026 Adalia Advisors. All rights reserved.</p>
+</footer>
+</body>
+</html>
