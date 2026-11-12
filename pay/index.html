@@ -304,7 +304,10 @@
   </footer>
 
   <script>
-    const WORKER_URL = "https://pay.adalia.workers.dev";
+    // Invoices are issued from adalia-edge (ITC-0002 onward). Numbers it doesn't know are tried against the
+    // original pay Worker, which looks up the invoices Stripe issued before November 2026 (ITC-0001).
+    const EDGE_URL   = "https://adalia-edge.adalia.workers.dev/invoices/find";
+    const LEGACY_URL = "https://pay.adalia.workers.dev";
 
     const btn     = document.getElementById("pay-btn");
     const spinner = document.getElementById("spinner");
@@ -341,8 +344,19 @@
       setLoading(true);
 
       try {
-        const res  = await fetch(`${WORKER_URL}?invoice=${encodeURIComponent(number)}`);
-        const data = await res.json();
+        let data;
+        const edge = await fetch(`${EDGE_URL}?n=${encodeURIComponent(number)}&format=json`);
+        if (edge.ok) {
+          data = await edge.json();
+          if (data.status === "processing") {
+            showSuccess(`Payment for invoice ${number} is on its way. Bank transfers take a few business days to settle; contact tmiller@adaliaadvisors.com with any questions.`);
+            setLoading(false);
+            return;
+          }
+        } else {
+          const res = await fetch(`${LEGACY_URL}?invoice=${encodeURIComponent(number)}`);
+          data = await res.json();
+        }
 
         if (data.status === "paid") {
           showSuccess(`Invoice ${number} has already been paid. Contact tmiller@adaliaadvisors.com with any questions.`);
